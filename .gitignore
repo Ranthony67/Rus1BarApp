@@ -51,3 +51,6 @@ gen-external-apklibs
 
 ### Git ###
 *.orig
+
+### Word ###
+*.docx
