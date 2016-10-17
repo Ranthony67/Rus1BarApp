@@ -12,10 +12,6 @@ import dk.rus_1_katrinebjerg.barapp.Model.BarItem;
 import dk.rus_1_katrinebjerg.barapp.Model.BaseModel;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 
-/**
- * Created by Rasmus on 11/10/2016.
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Info
     private static final String DATABASE_NAME = "reportingDatabase";
@@ -162,4 +158,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 }
-
