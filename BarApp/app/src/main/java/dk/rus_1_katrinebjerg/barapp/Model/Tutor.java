@@ -10,7 +10,8 @@ public class Tutor extends BaseModel{
     public int id;
     public String name;
     public String streetName;
-    public double spendAmount;
+
+
 
     @Override
     public ContentValues getContentValues() {
@@ -23,7 +24,7 @@ public class Tutor extends BaseModel{
     }
 
     public static void createTable(SQLiteDatabase db) {
-        String CREATE_WEATHER_TABLE = "CREATE TABLE " + TABLE_NAME +
+        String CreateTable = "CREATE TABLE " + TABLE_NAME +
                 "(" +
                 "id INTEGER PRIMARY KEY," +
                 "name TEXT" +
@@ -31,6 +32,6 @@ public class Tutor extends BaseModel{
                 "spendAmount REAL" +
                 ")";
 
-        db.execSQL(CREATE_WEATHER_TABLE);
+        db.execSQL(CreateTable);
     }
 }
