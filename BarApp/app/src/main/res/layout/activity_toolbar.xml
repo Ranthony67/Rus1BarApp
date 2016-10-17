@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:App="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    App:theme="@style/DrawerArrowStyle"
+    android:layout_height="56dp"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rus1"
+        android:id="@+id/lbl_title"
+        android:layout_gravity="center"
+        android:textColor="#ffffff"/>
+</android.support.v7.widget.Toolbar>

@@ -20,7 +20,8 @@
         <activity android:name=".Activities.DrinkActivity" />
         <activity android:name=".Activities.StatusActivity" />
         <activity android:name=".Activities.EndRusturActivity" />
-        <activity android:name=".Activities.BuyActivity"></activity>
+        <activity android:name=".Activities.BuyActivity" />
+        <activity android:name=".Activities.ToolbarActivity"></activity>
     </application>
 
 </manifest>

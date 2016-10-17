@@ -8,7 +8,7 @@ import dk.rus_1_katrinebjerg.barapp.R;
 public class BuyActivity extends BaseWithDrawer {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
     }
