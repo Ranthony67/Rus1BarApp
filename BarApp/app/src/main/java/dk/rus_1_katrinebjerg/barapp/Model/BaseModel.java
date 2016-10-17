@@ -1,0 +1,21 @@
+package dk.rus_1_katrinebjerg.barapp.Model;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+
+import dk.rus_1_katrinebjerg.barapp.Helpers.DatabaseHelper;
+
+/**
+ * Created by Rasmus on 11/10/2016.
+ */
+
+public abstract class BaseModel {
+    public int id;
+
+    public String tableName(){return getClass().getSimpleName().toLowerCase();}
+
+    public abstract ContentValues getContentValues();
+    public abstract void populateFromCursor(Cursor cursor);
+
+    public Boolean save(){return DatabaseHelper.getInstance().insertModel(this);}
+}
