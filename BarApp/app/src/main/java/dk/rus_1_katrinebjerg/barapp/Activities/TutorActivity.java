@@ -1,6 +1,8 @@
 package dk.rus_1_katrinebjerg.barapp.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import dk.rus_1_katrinebjerg.barapp.Activities.Base.BaseWithDrawer;
 import dk.rus_1_katrinebjerg.barapp.R;
@@ -11,5 +13,7 @@ public class TutorActivity extends BaseWithDrawer {
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_tutor);
         super.onCreate(savedInstanceState);
+
+
     }
 }

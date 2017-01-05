@@ -6,4 +6,7 @@
     <string name="activity_createrustur">Create new tour</string>
     <string name="activity_drink">Add new drink</string>
     <string name="activity_tutor">Add new tutor</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

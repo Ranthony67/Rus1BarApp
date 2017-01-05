@@ -9,9 +9,20 @@
         android:id="@+id/toolbar"
         layout="@layout/activity_toolbar" />
 
-    <TextView
+    <fragment
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello ny tutor"
-        android:layout_below="@+id/toolbar"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:name="dk.rus_1_katrinebjerg.barapp.Activities.Tutor.TutorInputFragment"
+        tools:layout="@layout/fragment_tutor_input"
+        android:id="@+id/TutorInputFragment"/>
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:name="dk.rus_1_katrinebjerg.barapp.Activities.Tutor.TutorListFragment"
+        tools:layout="@layout/fragment_tutor_list"
+        android:layout_toEndOf="@+id/TutorInputFragment"/>
+
 </RelativeLayout>
