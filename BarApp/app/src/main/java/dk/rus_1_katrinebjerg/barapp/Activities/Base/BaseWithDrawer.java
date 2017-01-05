@@ -20,6 +20,7 @@ import java.util.Map;
 import dk.rus_1_katrinebjerg.barapp.Activities.CreateRusturActivity;
 import dk.rus_1_katrinebjerg.barapp.Activities.DrinkActivity;
 import dk.rus_1_katrinebjerg.barapp.Activities.MainActivity;
+import dk.rus_1_katrinebjerg.barapp.Activities.TutorActivity;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 
@@ -57,6 +58,7 @@ public class BaseWithDrawer extends AppCompatActivity {
         ActivityMap.put(0, MainActivity.class);
         ActivityMap.put(1, CreateRusturActivity.class);
         ActivityMap.put(2, DrinkActivity.class);
+        ActivityMap.put(3, TutorActivity.class);
         return ActivityMap;
     }
 

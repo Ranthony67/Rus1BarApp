@@ -9,7 +9,7 @@ public class StatusActivity extends BaseWithDrawer {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
+        super.onCreate(savedInstanceState);
     }
 }

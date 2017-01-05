@@ -9,7 +9,7 @@ public class BuyActivity extends BaseWithDrawer {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy);
+        super.onCreate(savedInstanceState);
     }
 }

@@ -9,7 +9,7 @@ public class EndRusturActivity extends BaseWithDrawer {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_rustur);
+        super.onCreate(savedInstanceState);
     }
 }

@@ -4,5 +4,6 @@
         <item>@string/activity_home</item>
         <item>@string/activity_createrustur</item>
         <item>@string/activity_drink</item>
+        <item>@string/activity_tutor</item>
     </string-array>
 </resources>

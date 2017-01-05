@@ -5,4 +5,13 @@
     android:layout_height="match_parent"
     tools:context="dk.rus_1_katrinebjerg.barapp.Activities.TutorActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_toolbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello ny tutor"
+        android:layout_below="@+id/toolbar"/>
 </RelativeLayout>
