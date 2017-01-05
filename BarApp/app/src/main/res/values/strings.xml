@@ -2,4 +2,7 @@
     <string name="app_name">BarApp</string>
     <string name="mainActivity">Main Activity</string>
     <string name="rus1">RUS-1 Katrinebjerg</string>
+    <string name="activity_home">Home</string>
+    <string name="activity_createrustur">Create new tour</string>
+    <string name="activity_drink">Add new drink</string>
 </resources>
