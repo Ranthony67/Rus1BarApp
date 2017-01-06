@@ -15,10 +15,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.HashMap;
 import java.util.Map;
 
-import dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Drink.DrinkMasterFragment;
-import dk.rus_1_katrinebjerg.barapp.Activities.Fragments.HomeFragment;
-import dk.rus_1_katrinebjerg.barapp.Activities.Fragments.RusTour.RusTourMasterFragment;
-import dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Tutor.TutorMasterFragment;
+import dk.rus_1_katrinebjerg.barapp.Fragments.Drink.DrinkMasterFragment;
+import dk.rus_1_katrinebjerg.barapp.Fragments.HomeFragment;
+import dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourMasterFragment;
+import dk.rus_1_katrinebjerg.barapp.Fragments.Tutor.TutorMasterFragment;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 

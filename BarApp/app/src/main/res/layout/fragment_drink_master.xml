@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Drink.DrinkMasterFragment">
+    tools:context=".Fragments.Drink.DrinkMasterFragment">
 
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:name="dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Drink.DrinkInputFragment"
+        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.Drink.DrinkInputFragment"
         tools:layout="@layout/fragment_drink_input"
         android:id="@+id/drink_input_fragment"
         android:layout_weight="1"/>
@@ -15,7 +15,7 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:name="dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Drink.DrinkListFragment"
+        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.Drink.DrinkListFragment"
         tools:layout="@layout/fragment_drink_list"
         android:layout_toEndOf="@+id/drink_input_fragment"
         android:id="@+id/drink_list_fragment"

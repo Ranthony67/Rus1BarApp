@@ -1,4 +1,4 @@
-package dk.rus_1_katrinebjerg.barapp.Activities.Fragments.RusTour;
+package dk.rus_1_katrinebjerg.barapp.Fragments.RusTour;
 
 
 import android.os.Bundle;
@@ -9,14 +9,22 @@ import android.view.ViewGroup;
 
 import dk.rus_1_katrinebjerg.barapp.R;
 
-public class RusTourMasterFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class RusTourInputFragment extends Fragment {
 
-    public RusTourMasterFragment() {}
+
+    public RusTourInputFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rus_tour_master, container, false);
+        return inflater.inflate(R.layout.fragment_rus_tour_input, container, false);
     }
+
 }

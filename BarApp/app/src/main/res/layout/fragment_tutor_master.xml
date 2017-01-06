@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Tutor.TutorMasterFragment">
+    tools:context=".Fragments.Tutor.TutorMasterFragment">
 
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:name="dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Tutor.TutorInputFragment"
+        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.Tutor.TutorInputFragment"
         tools:layout="@layout/fragment_tutor_input"
         android:layout_weight="1"
         android:id="@+id/tutor_input_fragment"/>
@@ -15,7 +15,7 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:name="dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Tutor.TutorListFragment"
+        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.Tutor.TutorListFragment"
         tools:layout="@layout/fragment_tutor_list"
         android:id="@+id/tutor_list_fragment"
         android:layout_weight="1"

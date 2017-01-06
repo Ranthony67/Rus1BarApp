@@ -1,4 +1,4 @@
-package dk.rus_1_katrinebjerg.barapp.Activities.Fragments.RusTour;
+package dk.rus_1_katrinebjerg.barapp.Fragments.Drink;
 
 
 import android.os.Bundle;
@@ -9,22 +9,15 @@ import android.view.ViewGroup;
 
 import dk.rus_1_katrinebjerg.barapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class RusTourInputFragment extends Fragment {
+public class DrinkMasterFragment extends Fragment {
 
-
-    public RusTourInputFragment() {
-        // Required empty public constructor
-    }
-
+    public DrinkMasterFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rus_tour_input, container, false);
+        return inflater.inflate(R.layout.fragment_drink_master, container, false);
     }
 
 }
