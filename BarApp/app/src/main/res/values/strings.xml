@@ -2,10 +2,10 @@
     <string name="app_name">BarApp</string>
     <string name="mainActivity">Main Activity</string>
     <string name="rus1">RUS-1 Katrinebjerg</string>
-    <string name="activity_home">Home</string>
-    <string name="activity_createrustur">Create new tour</string>
-    <string name="activity_drink">Add new drink</string>
-    <string name="activity_tutor">Add new tutor</string>
+    <string name="fragment_home">Home</string>
+    <string name="fragment_createrustur">Create new tour</string>
+    <string name="fragment_drink">Add new drink</string>
+    <string name="fragment_tutor">Add new tutor</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

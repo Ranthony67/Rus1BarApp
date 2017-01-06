@@ -1,4 +1,4 @@
-package dk.rus_1_katrinebjerg.barapp.Activities.Tutor;
+package dk.rus_1_katrinebjerg.barapp.Activities.Fragments.Tutor;
 
 
 import android.os.Bundle;
@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 
 import dk.rus_1_katrinebjerg.barapp.R;
 
-public class TutorListFragment extends Fragment {
+public class TutorMasterFragment extends Fragment {
 
-    public TutorListFragment() {}
+    public TutorMasterFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tutor_list, container, false);
+        return inflater.inflate(R.layout.fragment_tutor_master, container, false);
     }
 
 }

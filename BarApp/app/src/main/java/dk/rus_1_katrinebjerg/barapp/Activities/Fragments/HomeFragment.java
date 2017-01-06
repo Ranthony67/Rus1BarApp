@@ -1,4 +1,4 @@
-package dk.rus_1_katrinebjerg.barapp.Activities.Tutor;
+package dk.rus_1_katrinebjerg.barapp.Activities.Fragments;
 
 
 import android.os.Bundle;
@@ -9,17 +9,18 @@ import android.view.ViewGroup;
 
 import dk.rus_1_katrinebjerg.barapp.R;
 
-public class TutorInputFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class HomeFragment extends Fragment {
 
-
-    public TutorInputFragment() {}
-
+    public HomeFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tutor_input, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
 }

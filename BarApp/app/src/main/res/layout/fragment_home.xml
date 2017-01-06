@@ -2,11 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Fragments.Tutor.TutorInputFragment">
+    tools:context="dk.rus_1_katrinebjerg.barapp.Activities.Fragments.HomeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello Input Fragment" />
+
 
 </FrameLayout>

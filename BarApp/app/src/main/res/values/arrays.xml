@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="menu_items">
-        <item>@string/activity_home</item>
-        <item>@string/activity_createrustur</item>
-        <item>@string/activity_drink</item>
-        <item>@string/activity_tutor</item>
+        <item>@string/fragment_home</item>
+        <item>@string/fragment_createrustur</item>
+        <item>@string/fragment_drink</item>
+        <item>@string/fragment_tutor</item>
     </string-array>
 </resources>
