@@ -78,10 +78,11 @@ public class TutorInputFragment extends Fragment {
         realm.copyToRealm(tutor);
         realm.commitTransaction();
 
-
+        clearFields();
     }
 
     public void clearFields(){
-        
+        txtName.setText("");
+        txtStreetName.setText("");
     }
 }
