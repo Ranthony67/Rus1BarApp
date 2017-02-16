@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
 import dk.rus_1_katrinebjerg.barapp.Utils.Keyboard;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class TutorInputFragment extends Fragment {
 
@@ -32,8 +35,9 @@ public class TutorInputFragment extends Fragment {
     @BindView(R.id.btnCancelTutor)
     Button btnCancelTutor;
 
-    public TutorInputFragment() {
-    }
+    Realm realm;
+
+    public TutorInputFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +46,7 @@ public class TutorInputFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_tutor_input, container, false);
 
         ButterKnife.bind(this, root);
+        Realm.init(getContext());
         return root;
     }
 
@@ -49,6 +54,7 @@ public class TutorInputFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        realm = Realm.getDefaultInstance();
         txtName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
         txtStreetName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
 
@@ -57,7 +63,6 @@ public class TutorInputFragment extends Fragment {
                 addTutor();
             }
         });
-
         btnCancelTutor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,16 +73,17 @@ public class TutorInputFragment extends Fragment {
 
     public void addTutor(){
         Tutor tutor = new Tutor();
+        int primaryKeyValue  = realm.where(Tutor.class).max("id").intValue()+1;
+
+        tutor.id = primaryKeyValue;
         tutor.name = txtName.getText().toString();
         tutor.streetName = txtStreetName.getText().toString();
 
-        Realm.init(getContext());
-
-        Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         realm.copyToRealm(tutor);
         realm.commitTransaction();
 
+        realm.close();
         clearFields();
     }
 

@@ -11,7 +11,5 @@ public class MainActivity extends BaseWithDrawer {
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
-
-
     }
 }
