@@ -32,7 +32,8 @@ public class TutorInputFragment extends Fragment {
 
     Realm realm;
 
-    public TutorInputFragment() {}
+    public TutorInputFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,8 +54,8 @@ public class TutorInputFragment extends Fragment {
         editTxtName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
         editTxtStreetName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
 
-        btnAddTutor.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
+        btnAddTutor.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 addTutor();
             }
         });
@@ -66,9 +67,14 @@ public class TutorInputFragment extends Fragment {
         });
     }
 
-    public void addTutor(){
+    public void addTutor() {
         Tutor tutor = new Tutor();
-        int primaryKeyValue  = realm.where(Tutor.class).max("id").intValue()+1;
+        int primaryKeyValue;
+        if (realm.where(Tutor.class).max("id") != null) {
+            primaryKeyValue = realm.where(Tutor.class).max("id").intValue() + 1;
+        } else{
+            primaryKeyValue = 0;
+        }
 
         tutor.id = primaryKeyValue;
         tutor.name = editTxtName.getText().toString();
@@ -82,7 +88,7 @@ public class TutorInputFragment extends Fragment {
         clearFields();
     }
 
-    public void clearFields(){
+    public void clearFields() {
         editTxtName.setText("");
         editTxtStreetName.setText("");
     }

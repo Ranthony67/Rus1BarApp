@@ -32,18 +32,20 @@
                 android:layout_toRightOf="@+id/txtName"
                 android:layout_toEndOf="@+id/txtName" />
 
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit"
+                android:src="@drawable/ic_edit"
+                android:background="@null"
                 android:id="@+id/btnEditTutor"
                 android:layout_toStartOf="@+id/btnDeleteTutor"
                 android:layout_marginRight="5dp"/>
 
-            <Button
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete"
+                android:src="@drawable/ic_delete"
+                android:background="@null"
                 android:id="@+id/btnDeleteTutor"
                 android:layout_alignParentRight="true"/>
 

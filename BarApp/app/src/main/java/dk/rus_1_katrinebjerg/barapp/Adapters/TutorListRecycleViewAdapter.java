@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -73,16 +74,16 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
 
         public TextView txtName;
         public TextView txtStreetName;
-        public Button btnEditTutor;
-        public Button btnDeleteTutor;
+        public ImageButton btnEditTutor;
+        public ImageButton btnDeleteTutor;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             txtName = (TextView) itemView.findViewById(R.id.txtName);
             txtStreetName = (TextView) itemView.findViewById(R.id.txtStreetname);
-            btnEditTutor = (Button) itemView.findViewById(R.id.btnEditTutor);
-            btnDeleteTutor = (Button) itemView.findViewById(R.id.btnDeleteTutor);
+            btnEditTutor = (ImageButton) itemView.findViewById(R.id.btnEditTutor);
+            btnDeleteTutor = (ImageButton) itemView.findViewById(R.id.btnDeleteTutor);
         }
     }
 }
