@@ -6,7 +6,7 @@
     App:theme="@style/DrawerArrowStyle"
     android:layout_height="56dp"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/PrimeGray">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,5 +14,6 @@
         android:text="@string/rus1"
         android:id="@+id/lbl_title"
         android:layout_gravity="center"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        />
 </android.support.v7.widget.Toolbar>
