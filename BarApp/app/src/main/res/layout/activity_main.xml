@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/toolbar"
-        android:layout="@layout/activity_toolbar"/>
+        layout="@layout/activity_toolbar" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +15,6 @@
         android:layout_centerVertical="true"
         android:layout_below="@+id/toolbar"
         android:id="@+id/fragment_container"
-        android:background="@drawable/Rus1logo"
-        android:alpha="0.1"/>
+        android:background="@drawable/rus1logo" />
 
 </RelativeLayout>

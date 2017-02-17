@@ -46,7 +46,6 @@ public class TutorListFragment extends Fragment {
 
         realm = Realm.getDefaultInstance();
         final RealmResults<Tutor> tutors = realm.where(Tutor.class).findAll();
-        realm.close();
 
         mRecyclerView.setAdapter(new TutorListRecycleViewAdapter(tutors));
 

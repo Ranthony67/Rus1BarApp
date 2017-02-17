@@ -16,7 +16,6 @@ import io.realm.RealmResults;
 public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListRecycleViewAdapter.ViewHolder> {
 
     private final RealmResults<Tutor> mValues;
-    private ViewHolder mViewHolder;
 
     public TutorListRecycleViewAdapter(RealmResults<Tutor> mValues) {
         this.mValues = mValues;
