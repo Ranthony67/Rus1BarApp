@@ -14,6 +14,7 @@ import dk.rus_1_katrinebjerg.barapp.Adapters.TutorListRecycleViewAdapter;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 public class TutorListFragment extends Fragment {
@@ -21,9 +22,8 @@ public class TutorListFragment extends Fragment {
     public TutorListFragment() {}
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private Realm realm;
+    private TutorListRecycleViewAdapter tutorListRecycleViewAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +47,16 @@ public class TutorListFragment extends Fragment {
         realm = Realm.getDefaultInstance();
         final RealmResults<Tutor> tutors = realm.where(Tutor.class).findAll();
 
-        mRecyclerView.setAdapter(new TutorListRecycleViewAdapter(tutors, getContext()));
+        tutorListRecycleViewAdapter = new TutorListRecycleViewAdapter(tutors, getContext());
+
+        tutors.addChangeListener(new RealmChangeListener<RealmResults<Tutor>>() {
+            @Override
+            public void onChange(RealmResults<Tutor> element) {
+                tutorListRecycleViewAdapter.notifyDataSetChanged();
+            }
+        });
+
+        mRecyclerView.setAdapter(tutorListRecycleViewAdapter);
 
         return view;
     }
