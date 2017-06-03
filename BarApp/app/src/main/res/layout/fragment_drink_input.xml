@@ -1,13 +1,46 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.Drink.DrinkInputFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/drinkName"
+        android:hint="@string/drink_name_hint"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:ems="10"/>
 
-</FrameLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/drinkPrice"
+        android:hint="@string/drink_price_hint"
+        android:layout_alignTop="@+id/drinkName"
+        android:layout_alignEnd="@+id/drinkName"
+        android:ems="10"
+        android:layout_marginTop="104dp"/>
+
+    <Button
+        android:text="@string/add_drink_btnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAddDrink"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/drinkPrice"
+        android:layout_below="@+id/drinkPrice"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:text="@string/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCancelDrink"
+        android:layout_alignBaseline="@+id/btnAddDrink"
+        android:layout_alignBottom="@+id/btnAddDrink"
+        android:layout_alignEnd="@+id/drinkPrice" />
+
+</RelativeLayout>

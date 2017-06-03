@@ -9,4 +9,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drink_name_hint">Drink Name</string>
+    <string name="drink_price_hint">Drink Price</string>
+    <string name="add_drink_btnText">Add Drink</string>
+    <string name="cancel">Cancel</string>
 </resources>
