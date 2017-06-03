@@ -53,7 +53,7 @@ public class DrinkInputFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        //super.onViewCreated(view, savedInstanceState);
 
         realm = Realm.getDefaultInstance();
         editTxtBarItemName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
@@ -65,7 +65,6 @@ public class DrinkInputFragment extends Fragment {
                 addDrink();
             }
         });
-
         btnCancelDrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
