@@ -1,13 +1,37 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.RusTour.RusTourInputFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="104dp"
+        android:id="@+id/editTripName"
+        android:hint="Write rustour name" />
 
-</FrameLayout>
+    <Button
+        android:text="Add Tutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAddTrip"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/editTripName"
+        android:layout_below="@+id/editTripName"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCancelTrip"
+        android:layout_alignBaseline="@+id/btnAddTrip"
+        android:layout_alignBottom="@+id/btnAddTrip"
+        android:layout_alignEnd="@+id/editTripName" />
+
+</RelativeLayout>

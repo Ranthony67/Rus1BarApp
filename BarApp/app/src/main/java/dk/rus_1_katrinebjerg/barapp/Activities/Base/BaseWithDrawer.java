@@ -64,11 +64,13 @@ public class BaseWithDrawer extends AppCompatActivity {
         return fragmentMap;
     }
 
-    private IDrawerItem[] generateDrawerItems(int resourceId) {
+    private IDrawerItem[] generateDrawerItems(int resourceId)
+    {
         String[] menuItems = getResources().getStringArray(resourceId);
         IDrawerItem[] items = new IDrawerItem[menuItems.length];
 
-        for (int i = 0; i < menuItems.length; i++) {
+        for (int i = 0; i < menuItems.length; i++)
+        {
             String name = menuItems[i];
             items[i] = new PrimaryDrawerItem().withIdentifier(1).withName(name);
         }
