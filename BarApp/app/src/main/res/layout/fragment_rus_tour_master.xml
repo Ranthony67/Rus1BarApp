@@ -2,24 +2,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="2"
+    android:layout_weight="3"
     tools:context=".Fragments.RusTour.RusTourMasterFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:weightSum="2"
+        android:id="@+id/RusTur_linearLayout_inputAndList"
+        android:orientation="vertical" >
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourInputFragment"
+            tools:layout="@layout/fragment_rus_tour_input"
+            android:id="@+id/rus_tour_input_fragment"
+            android:layout_weight="1"/>
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourListFragment"
+            tools:layout="@layout/fragment_rus_tour_list"
+            android:id="@+id/rus_tour_list_fragment"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourInputFragment"
-        tools:layout="@layout/fragment_rus_tour_input"
-        android:id="@+id/rus_tour_input_fragment"
+        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTurListOfTutor"
+        tools:layout="@layout/fragment_tutor_list"
+        android:layout_toEndOf="@+id/RusTur_linearLayout_inputAndList"
+        android:id="@+id/tutor_list_fragment_jjj"
         android:layout_weight="1"/>
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourListFragment"
-        tools:layout="@layout/fragment_rus_tour_list"
-        android:layout_toEndOf="@+id/rus_tour_input_fragment"
-        android:id="@+id/rus_tour_list_fragment"
+        android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTurListOfBarItems"
+        tools:layout="@layout/fragment_rus_tour_list_of_tutor"
+        android:layout_toEndOf="@+id/rus_tour_list_of_tutor_fragment"
+        android:id="@+id/rus_tour_list_of_bar_item_fragment"
         android:layout_weight="1"/>
 
 </LinearLayout>
