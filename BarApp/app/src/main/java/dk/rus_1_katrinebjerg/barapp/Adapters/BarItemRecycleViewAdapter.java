@@ -36,12 +36,26 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        final String name = mValues.get(position).name;
+        final String price = Double.toString(mValues.get(position).price);
 
+        holder.txtBarItemName.setText(name);
+        holder.txtBarItemPrice.setText(price);
+
+        holder.btnDeleteBarItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                realm.beginTransaction();
+                RealmResults<BarItem> barItem = realm.where(BarItem.class).equalTo("name", name).equalTo("price", price).findAll();
+                barItem.deleteAllFromRealm();
+                realm.commitTransaction();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mValues.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

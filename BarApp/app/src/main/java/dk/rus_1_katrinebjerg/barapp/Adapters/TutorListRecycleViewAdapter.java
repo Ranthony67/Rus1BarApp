@@ -37,7 +37,6 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
         realm = Realm.getDefaultInstance();
         return viewHolder;
     }
-
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final String name = mValues.get(position).name;
