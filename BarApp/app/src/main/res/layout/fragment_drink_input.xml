@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/drinkPrice"
+        android:inputType="phone"
         android:hint="@string/drink_price_hint"
         android:layout_alignTop="@+id/drinkName"
         android:layout_alignEnd="@+id/drinkName"
