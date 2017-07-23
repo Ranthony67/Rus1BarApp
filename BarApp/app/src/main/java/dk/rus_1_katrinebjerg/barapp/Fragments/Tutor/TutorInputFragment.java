@@ -127,7 +127,8 @@ public class TutorInputFragment extends Fragment {
     }
 
     public void clearFields() {
-        imgBtnChooseTutorImage.setBackground(getResources().getDrawable(R.drawable.ic_person));
+        BitmapDrawable tutorImageBitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_person);
+        imgBtnChooseTutorImage.setImageBitmap(tutorImageBitmapDrawable.getBitmap());
         editTxtName.setText("");
         editTxtStreetName.setText("");
     }
