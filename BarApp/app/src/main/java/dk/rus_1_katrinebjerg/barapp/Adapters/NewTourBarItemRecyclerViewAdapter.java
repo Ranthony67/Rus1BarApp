@@ -43,7 +43,7 @@ public class NewTourBarItemRecyclerViewAdapter extends RecyclerView.Adapter<NewT
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String name = mValues.get(position).name;
-        final String price = Double.toString(mValues.get(position).price);
+        final String price = Double.toString(mValues.get(position).price) + ",-";
 
         holder.txtName.setText(name);
         holder.txtPrice.setText(price);

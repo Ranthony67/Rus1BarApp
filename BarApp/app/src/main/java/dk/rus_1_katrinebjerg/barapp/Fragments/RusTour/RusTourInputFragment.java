@@ -1,5 +1,9 @@
 package dk.rus_1_katrinebjerg.barapp.Fragments.RusTour;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,9 +21,6 @@ import dk.rus_1_katrinebjerg.barapp.R;
 import dk.rus_1_katrinebjerg.barapp.Utils.Keyboard;
 import io.realm.Realm;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RusTourInputFragment extends Fragment {
 
     @BindView(R.id.editTripName)
@@ -53,7 +54,26 @@ public class RusTourInputFragment extends Fragment {
 
         btnAddTrip.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                addTrip();
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                builder.setMessage("Are you shour that everything is added to the tour. Features can't be added when created")
+                        .setTitle("Warning - Start Tour");
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        addTrip();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
         btnCancelTrip.setOnClickListener(new View.OnClickListener() {

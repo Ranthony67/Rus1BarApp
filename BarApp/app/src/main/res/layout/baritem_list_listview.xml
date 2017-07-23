@@ -8,10 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/newTour_tutorListView_imageView"
-        android:orientation="vertical"
-        >
+        android:layout_alignParentStart="true">
 
         <TextView
             android:id="@+id/newTour_tutorListView_BarItemName"
@@ -21,13 +20,6 @@
             android:textSize="20dp"
             />
 
-        <TextView
-            android:id="@+id/newTour_tutorListView_BarItemPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Price"
-            android:textSize="10dp"
-            />
     </LinearLayout>
 
     <CheckBox
@@ -36,5 +28,16 @@
         android:layout_height="40dp"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/newTour_tutorListView_BarItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/newTour_tutorListView_linearLayout_names"
+        android:layout_toStartOf="@+id/newTour_tutorListView_checkBox"
+        android:layout_centerVertical="true"
+        android:hint="Price"
+        android:textSize="15dp" />
+
 
 </RelativeLayout>

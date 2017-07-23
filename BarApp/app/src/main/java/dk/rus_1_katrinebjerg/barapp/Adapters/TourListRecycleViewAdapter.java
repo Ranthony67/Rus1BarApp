@@ -41,7 +41,7 @@ public class TourListRecycleViewAdapter extends RecyclerView.Adapter<TourListRec
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-
+        final int id = mValues.get(position).id;
         final String name = mValues.get(position).name;
 
         holder.txtName.setText(name);
@@ -52,6 +52,17 @@ public class TourListRecycleViewAdapter extends RecyclerView.Adapter<TourListRec
 
             }
         });
+
+        holder.btnDeleteTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                realm.beginTransaction();
+                RealmResults<Trip> tutor = realm.where(Trip.class).equalTo("id", id ).findAll();
+                tutor.deleteAllFromRealm();
+                realm.commitTransaction();
+            }
+        });
+
     }
 
     @Override
@@ -64,6 +75,8 @@ public class TourListRecycleViewAdapter extends RecyclerView.Adapter<TourListRec
 
         public TextView txtName;
         public ImageButton btnEditTour;
+        public ImageButton btnDeleteTour;
+
 
         public ViewHolder(View itemView)
         {
@@ -71,6 +84,7 @@ public class TourListRecycleViewAdapter extends RecyclerView.Adapter<TourListRec
 
             txtName = (TextView) itemView.findViewById(R.id.txtTourname);
             btnEditTour = (ImageButton) itemView.findViewById(R.id.btnEditTour);
+            btnDeleteTour = (ImageButton) itemView.findViewById(R.id.btnDeleteTutor);
         }
     }
 }
