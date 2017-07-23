@@ -39,7 +39,6 @@ public class RusTurListOfTutor extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_rus_tour_list_of_tutor, container, false);
 
-
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rus_tour_tutorList_recycler_view);
         mRecyclerView.hasFixedSize();
 
@@ -49,7 +48,7 @@ public class RusTurListOfTutor extends Fragment {
         realm = Realm.getDefaultInstance();
         final RealmResults<Tutor> tutors = realm.where(Tutor.class).findAll();
 
-        //TODO have to sort list the right way
+        //TODO have to sort list the right way, alphabetic
         tutors.sort("name", Sort.DESCENDING);
 
         newTourTutorListRecyclerViewAdapter = new NewTourTutorListRecyclerViewAdapter(tutors, getContext());

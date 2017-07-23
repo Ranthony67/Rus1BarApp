@@ -11,18 +11,18 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
+import dk.rus_1_katrinebjerg.barapp.Model.BarItem;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<NewTourTutorListRecyclerViewAdapter.ViewHolder>
+public class NewTourBarItemRecyclerViewAdapter extends RecyclerView.Adapter<NewTourBarItemRecyclerViewAdapter.ViewHolder>
 {
-    private final RealmResults<Tutor> mValues;
+    private final RealmResults<BarItem> mValues;
     private final Context context;
     private Realm realm;
 
-    public NewTourTutorListRecyclerViewAdapter(RealmResults<Tutor> mValues, Context context) {
+    public NewTourBarItemRecyclerViewAdapter(RealmResults<BarItem> mValues, Context context) {
         this.mValues = mValues;
         this.context = context;
     }
@@ -30,10 +30,10 @@ public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<Ne
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.tutor_list_listview, parent, false);
+                .inflate(R.layout.baritem_list_listview, parent, false);
 
-        NewTourTutorListRecyclerViewAdapter.ViewHolder viewHolder =
-                new NewTourTutorListRecyclerViewAdapter.ViewHolder(view);
+        NewTourBarItemRecyclerViewAdapter.ViewHolder viewHolder =
+                new NewTourBarItemRecyclerViewAdapter.ViewHolder(view);
 
         Realm.init(context);
         realm = Realm.getDefaultInstance();
@@ -43,10 +43,10 @@ public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<Ne
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String name = mValues.get(position).name;
-        final String streetName = mValues.get(position).streetName;
+        final String price = Double.toString(mValues.get(position).price);
 
         holder.txtName.setText(name);
-        holder.txtStreetName.setText(streetName);
+        holder.txtPrice.setText(price);
     }
 
     @Override
@@ -57,49 +57,14 @@ public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<Ne
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtName;
-        public TextView txtStreetName;
+        public TextView txtPrice;
 
         public ViewHolder(View itemView)
         {
             super(itemView);
 
-            txtName = (TextView) itemView.findViewById(R.id.newTour_tutorListView_name);
-            txtStreetName = (TextView) itemView.findViewById(R.id.newTour_tutorListView_Streetname);
+            txtName = (TextView) itemView.findViewById(R.id.newTour_tutorListView_BarItemName);
+            txtPrice = (TextView) itemView.findViewById(R.id.newTour_tutorListView_BarItemPrice);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
