@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/newTour_tutorListView_imageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/testpic"
+        />
+
+    <LinearLayout
+        android:id="@+id/newTour_tutorListView_linearLayout_names"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/newTour_tutorListView_imageView"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/newTour_tutorListView_Streetname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="StreetName"
+            android:textSize="20dp"
+            />
+
+        <TextView
+            android:id="@+id/newTour_tutorListView_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:hint="Name"
+            />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/newTour_tutorListView_checkBox"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

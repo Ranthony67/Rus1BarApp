@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="3"
+    android:layout_weight="2"
     tools:context=".Fragments.RusTour.RusTourMasterFragment">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,9 +24,12 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourListFragment"
-            tools:layout="@layout/fragment_rus_tour_list"
-            android:id="@+id/rus_tour_list_fragment"
+            tools:layout="@layout/fragment_rus_tour_list_of_tours"
+            android:id="@+id/rusTuor_list_fragment"
             android:layout_weight="1"/>
 
     </LinearLayout>
@@ -35,18 +38,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTurListOfTutor"
-        tools:layout="@layout/fragment_tutor_list"
+        tools:layout="@layout/fragment_rus_tour_list_of_tutor"
         android:layout_toEndOf="@+id/RusTur_linearLayout_inputAndList"
-        android:id="@+id/tutor_list_fragment_jjj"
-        android:layout_weight="1"/>
+        android:id="@+id/rusTour_tutor_list_fragment"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        />
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTurListOfBarItems"
-        tools:layout="@layout/fragment_rus_tour_list_of_tutor"
+        tools:layout="@layout/fragment_rus_tour_list_of_bar_items"
         android:layout_toEndOf="@+id/rus_tour_list_of_tutor_fragment"
         android:id="@+id/rus_tour_list_of_bar_item_fragment"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"/>
 
 </LinearLayout>

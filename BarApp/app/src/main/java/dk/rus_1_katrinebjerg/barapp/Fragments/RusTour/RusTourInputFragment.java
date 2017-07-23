@@ -1,6 +1,5 @@
 package dk.rus_1_katrinebjerg.barapp.Fragments.RusTour;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,7 @@ import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dk.rus_1_katrinebjerg.barapp.Activities.MainActivity;
 import dk.rus_1_katrinebjerg.barapp.Model.Trip;
 import dk.rus_1_katrinebjerg.barapp.R;
 import dk.rus_1_katrinebjerg.barapp.Utils.Keyboard;
@@ -33,9 +33,7 @@ public class RusTourInputFragment extends Fragment {
 
     Realm realm;
 
-    public RusTourInputFragment() {
-        // Required empty public constructor
-    }
+    public RusTourInputFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -50,7 +48,7 @@ public class RusTourInputFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
     {
-        realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
         editTripName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
 
         btnAddTrip.setOnClickListener(new View.OnClickListener() {
@@ -70,16 +68,17 @@ public class RusTourInputFragment extends Fragment {
     {
         Trip trip = new Trip();
         int primaryKeyValue;
-        if (realm.where(Trip.class).max("id") != null) {
+        if (realm.where(Trip.class).max("id") != null)
+        {
             primaryKeyValue = realm.where(Trip.class).max("id").intValue() + 1;
-        } else {
+        }
+        else
+        {
             primaryKeyValue = 0;
         }
 
         trip.id = primaryKeyValue;
         trip.name = editTripName.getText().toString();
-
-
 
         realm.beginTransaction();
         realm.copyToRealm(trip);
@@ -87,8 +86,6 @@ public class RusTourInputFragment extends Fragment {
 
         realm.close();
         clearFields();
-
-
     }
 
     private void clearFields()

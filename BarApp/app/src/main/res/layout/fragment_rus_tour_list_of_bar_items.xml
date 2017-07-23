@@ -4,9 +4,21 @@
     android:layout_height="match_parent"
     tools:context="dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTurListOfBarItems">
 
-    <TextView
+    <ListView android:id="@id/android:list"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="#1a09526a"
+        android:layout_weight="1"
+        android:drawSelectorOnTop="false"/>
+
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="List of Bar-items:" />
 
 </FrameLayout>

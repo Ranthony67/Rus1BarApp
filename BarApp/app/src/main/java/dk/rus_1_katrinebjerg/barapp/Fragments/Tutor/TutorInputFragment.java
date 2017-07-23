@@ -32,8 +32,7 @@ public class TutorInputFragment extends Fragment {
 
     Realm realm;
 
-    public TutorInputFragment() {
-    }
+    public TutorInputFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,12 +66,16 @@ public class TutorInputFragment extends Fragment {
         });
     }
 
-    public void addTutor() {
+    public void addTutor()
+    {
         Tutor tutor = new Tutor();
         int primaryKeyValue;
-        if (realm.where(Tutor.class).max("id") != null) {
+        if (realm.where(Tutor.class).max("id") != null)
+        {
             primaryKeyValue = realm.where(Tutor.class).max("id").intValue() + 1;
-        } else{
+        }
+        else
+        {
             primaryKeyValue = 0;
         }
 
@@ -88,7 +91,8 @@ public class TutorInputFragment extends Fragment {
         clearFields();
     }
 
-    public void clearFields() {
+    public void clearFields()
+    {
         editTxtName.setText("");
         editTxtStreetName.setText("");
     }

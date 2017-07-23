@@ -1,6 +1,5 @@
 package dk.rus_1_katrinebjerg.barapp.Fragments.Tutor;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -57,7 +56,30 @@ public class TutorListFragment extends Fragment {
         });
 
         mRecyclerView.setAdapter(tutorListRecycleViewAdapter);
-
         return view;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

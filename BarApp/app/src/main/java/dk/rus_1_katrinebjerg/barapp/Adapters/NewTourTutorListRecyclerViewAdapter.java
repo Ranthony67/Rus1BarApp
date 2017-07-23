@@ -16,13 +16,13 @@ import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListRecycleViewAdapter.ViewHolder>
+public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<NewTourTutorListRecyclerViewAdapter.ViewHolder>
 {
     private final RealmResults<Tutor> mValues;
     private final Context context;
     private Realm realm;
 
-    public TutorListRecycleViewAdapter(RealmResults<Tutor> mValues, Context context) {
+    public NewTourTutorListRecyclerViewAdapter(RealmResults<Tutor> mValues, Context context) {
         this.mValues = mValues;
         this.context = context;
     }
@@ -30,38 +30,22 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.tutor_list_cardview, parent, false);
+                .inflate(R.layout.tutor_list_listview, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(view);
+        NewTourTutorListRecyclerViewAdapter.ViewHolder viewHolder =
+                new NewTourTutorListRecyclerViewAdapter.ViewHolder(view);
         Realm.init(context);
         realm = Realm.getDefaultInstance();
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         final String name = mValues.get(position).name;
         final String streetName = mValues.get(position).streetName;
 
         holder.txtName.setText(name);
         holder.txtStreetName.setText(streetName);
-
-        holder.btnDeleteTutor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                realm.beginTransaction();
-                RealmResults<Tutor> tutor = realm.where(Tutor.class).equalTo("name", name).equalTo("streetName", streetName).findAll();
-                tutor.deleteAllFromRealm();
-                realm.commitTransaction();
-            }
-        });
-
-        holder.btnEditTutor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     @Override
@@ -70,21 +54,53 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
     }
 
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtName;
         public TextView txtStreetName;
-        public ImageButton btnEditTutor;
-        public ImageButton btnDeleteTutor;
 
         public ViewHolder(View itemView)
         {
             super(itemView);
 
-            txtName = (TextView) itemView.findViewById(R.id.txtName);
-            txtStreetName = (TextView) itemView.findViewById(R.id.txtStreetname);
-            btnEditTutor = (ImageButton) itemView.findViewById(R.id.btnEditTutor);
-            btnDeleteTutor = (ImageButton) itemView.findViewById(R.id.btnDeleteTutor);
+            txtName = (TextView) itemView.findViewById(R.id.newTour_tutorListView_name);
+            txtStreetName = (TextView) itemView.findViewById(R.id.newTour_tutorListView_Streetname);
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

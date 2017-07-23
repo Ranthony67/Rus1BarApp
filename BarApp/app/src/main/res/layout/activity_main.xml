@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_below="@+id/toolbar"
-        android:id="@+id/fragment_container"
-        android:background="@drawable/rus1logo" />
+        android:id="@+id/fragment_container"/>
 
 </RelativeLayout>
