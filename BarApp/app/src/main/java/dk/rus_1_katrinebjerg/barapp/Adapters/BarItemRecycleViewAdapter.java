@@ -46,7 +46,7 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
             @Override
             public void onClick(View v) {
                 realm.beginTransaction();
-                RealmResults<BarItem> barItem = realm.where(BarItem.class).equalTo("name", name).equalTo("price", price).findAll();
+                RealmResults<BarItem> barItem = realm.where(BarItem.class).equalTo("name", name).equalTo("price", Double.parseDouble(price)).findAll();
                 barItem.deleteAllFromRealm();
                 realm.commitTransaction();
             }
