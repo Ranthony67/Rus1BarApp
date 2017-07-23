@@ -39,6 +39,7 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
     }
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+        final int id = mValues.get(position).id;
         final String name = mValues.get(position).name;
         final String streetName = mValues.get(position).streetName;
 
@@ -49,7 +50,7 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
             @Override
             public void onClick(View v) {
                 realm.beginTransaction();
-                RealmResults<Tutor> tutor = realm.where(Tutor.class).equalTo("name", name).equalTo("streetName", streetName).findAll();
+                RealmResults<Tutor> tutor = realm.where(Tutor.class).equalTo("id", id).findAll();
                 tutor.deleteAllFromRealm();
                 realm.commitTransaction();
             }
