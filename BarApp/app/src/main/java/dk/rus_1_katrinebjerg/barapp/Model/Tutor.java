@@ -9,6 +9,7 @@ public class Tutor extends RealmObject{
     public int id;
     public String name;
     public String streetName;
+    public String imagePath;
 
     public RealmList<BarItem> BarItemsBought;
 }
