@@ -14,6 +14,11 @@ public class MainActivity extends BaseWithDrawer {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
 
+        setRealmConfiguration();
+    }
+
+    // Update realm migration
+    public void setRealmConfiguration(){
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("realmConfig")
                 .schemaVersion(2)
