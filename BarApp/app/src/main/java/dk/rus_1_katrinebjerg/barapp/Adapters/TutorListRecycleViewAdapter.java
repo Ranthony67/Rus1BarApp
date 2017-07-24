@@ -1,16 +1,19 @@
 package dk.rus_1_katrinebjerg.barapp.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+import dk.rus_1_katrinebjerg.barapp.Model.Trip;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
@@ -46,6 +49,10 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
         holder.txtName.setText(name);
         holder.txtStreetName.setText(streetName);
 
+        Drawable tutorImageDrawable = Drawable.createFromPath(mValues.get(position).imagePath);
+        BitmapDrawable tutorImageBitmapDrawable = (BitmapDrawable) tutorImageDrawable;
+        holder.imgTutor.setImageBitmap(tutorImageBitmapDrawable.getBitmap());
+
         holder.btnDeleteTutor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +79,7 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        public ImageView imgTutor;
         public TextView txtName;
         public TextView txtStreetName;
         public ImageButton btnEditTutor;
@@ -80,7 +88,8 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
         public ViewHolder(View itemView) {
             super(itemView);
 
-            txtName = (TextView) itemView.findViewById(R.id.txtName);
+            imgTutor = (ImageView) itemView.findViewById(R.id.tutorImageView);
+            txtName = (TextView) itemView.findViewById(R.id.txtTutorName);
             txtStreetName = (TextView) itemView.findViewById(R.id.txtStreetname);
             btnEditTutor = (ImageButton) itemView.findViewById(R.id.btnEditTutor);
             btnDeleteTutor = (ImageButton) itemView.findViewById(R.id.btnDeleteTutor);
