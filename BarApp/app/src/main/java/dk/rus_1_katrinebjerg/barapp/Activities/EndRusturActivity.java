@@ -51,7 +51,7 @@ public class EndRusturActivity extends BaseWithDrawer {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Toast.makeText(getApplicationContext(), "The tour is now ended. GO HOME!", Toast.LENGTH_SHORT).show();
-                        
+
                         try {
                             endTrip();
                         } catch (IOException e) {
@@ -97,7 +97,7 @@ public class EndRusturActivity extends BaseWithDrawer {
             for(int j = 0; j < tutor.BarItemsBought.size(); j++){
                 price += tutor.BarItemsBought.get(j).price;
             }
-            fw.append(String.valueOf(price));
+            fw.append(String.valueOf(price * 0.75));
             fw.append(",");
         }
 
