@@ -1,6 +1,7 @@
 package dk.rus_1_katrinebjerg.barapp.Adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -49,9 +50,16 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
         holder.txtName.setText(name);
         holder.txtStreetName.setText(streetName);
 
-        Drawable tutorImageDrawable = Drawable.createFromPath(mValues.get(position).imagePath);
-        BitmapDrawable tutorImageBitmapDrawable = (BitmapDrawable) tutorImageDrawable;
-        holder.imgTutor.setImageBitmap(tutorImageBitmapDrawable.getBitmap());
+
+        if(mValues.get(position).imagePath.equals("")){
+            BitmapDrawable tutorImageBitmapDrawable = (BitmapDrawable) context.getResources().getDrawable(R.drawable.ic_person);
+            holder.imgTutor.setImageBitmap(tutorImageBitmapDrawable.getBitmap());
+        }
+        else {
+            Drawable tutorImageDrawable = Drawable.createFromPath(mValues.get(position).imagePath);
+            BitmapDrawable tutorImageBitmapDrawable = (BitmapDrawable) tutorImageDrawable;
+            holder.imgTutor.setImageBitmap(tutorImageBitmapDrawable.getBitmap());
+        }
 
         holder.btnDeleteTutor.setOnClickListener(new View.OnClickListener() {
             @Override
