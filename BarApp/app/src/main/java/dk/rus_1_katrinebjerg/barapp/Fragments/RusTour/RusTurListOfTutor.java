@@ -21,29 +21,28 @@ public class RusTurListOfTutor extends Fragment {
 
     public RusTurListOfTutor() { }
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView barItemList_RecyclerView;
     private Realm realm;
     private NewTourTutorListRecyclerViewAdapter newTourTutorListRecyclerViewAdapter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         Realm.init(getContext());
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_rus_tour_list_of_tutor, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rus_tour_tutorList_recycler_view);
-        mRecyclerView.hasFixedSize();
+        barItemList_RecyclerView = (RecyclerView) view.findViewById(R.id.rus_tour_tutorList_recycler_view);
+        barItemList_RecyclerView.hasFixedSize();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+        barItemList_RecyclerView.setLayoutManager(linearLayoutManager);
 
         realm = Realm.getDefaultInstance();
         final RealmResults<Tutor> tutors = realm.where(Tutor.class).findAll();
@@ -60,11 +59,10 @@ public class RusTurListOfTutor extends Fragment {
             }
         });
 
-        mRecyclerView.setAdapter(newTourTutorListRecyclerViewAdapter);
+        barItemList_RecyclerView.setAdapter(newTourTutorListRecyclerViewAdapter);
 
         return view;
     }
-
 }
 
 

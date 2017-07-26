@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,22 +54,24 @@ public class RusTourInputFragment extends Fragment {
         editTripName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
 
         btnAddTrip.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-
+            public void onClick(View view)
+            {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                builder.setMessage("Are you shour that everything is added to the tour. Features can't be added when created")
-                        .setTitle("Warning - Start Tour");
+                builder.setMessage("Are you shour that everything is added to the tour. Features can't be added when created").setTitle("Warning - Start Tour");
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
                         addTrip();
                     }
                 });
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        Toast.makeText(getActivity(), "Canceled", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -106,6 +109,12 @@ public class RusTourInputFragment extends Fragment {
 
         realm.close();
         clearFields();
+
+        // Make intent to alert activity that a tour is created  (MAinActivity have to be changed to tousMasterActivity
+        Intent tourCreatedIntetnt = new Intent(getActivity().getBaseContext(),MainActivity.class);
+        tourCreatedIntetnt.putExtra("tourId", primaryKeyValue);
+        startActivity(tourCreatedIntetnt);
+
     }
 
     private void clearFields()

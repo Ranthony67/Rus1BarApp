@@ -9,7 +9,6 @@
         android:id="@+id/newTour_tutorListView_imageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:srcCompat="@drawable/testpic"
         android:layout_marginLeft="8dp"
         />
 

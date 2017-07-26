@@ -21,7 +21,7 @@ public class RusTurListOfBarItems extends Fragment {
 
     public RusTurListOfBarItems() { }
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView tutorList_RecyclerView;
     private Realm realm;
     private NewTourBarItemRecyclerViewAdapter newTourBarItemRecyclerViewAdapter;
 
@@ -38,11 +38,11 @@ public class RusTurListOfBarItems extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_rus_tour_list_of_bar_items, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rus_tour_barItem_recycler_view);
-        mRecyclerView.hasFixedSize();
+        tutorList_RecyclerView = (RecyclerView) view.findViewById(R.id.rus_tour_barItem_recycler_view);
+        tutorList_RecyclerView.hasFixedSize();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+        tutorList_RecyclerView.setLayoutManager(linearLayoutManager);
 
         realm = Realm.getDefaultInstance();
         final RealmResults<BarItem> barItem = realm.where(BarItem.class).findAll();
@@ -59,7 +59,7 @@ public class RusTurListOfBarItems extends Fragment {
             }
         });
 
-        mRecyclerView.setAdapter(newTourBarItemRecyclerViewAdapter);
+        tutorList_RecyclerView.setAdapter(newTourBarItemRecyclerViewAdapter);
 
 
         return view;

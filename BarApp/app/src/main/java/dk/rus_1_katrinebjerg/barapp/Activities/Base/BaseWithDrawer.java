@@ -1,5 +1,6 @@
 package dk.rus_1_katrinebjerg.barapp.Activities.Base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +16,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.HashMap;
 import java.util.Map;
 
+import dk.rus_1_katrinebjerg.barapp.Activities.CreateRusTourActivity;
 import dk.rus_1_katrinebjerg.barapp.Fragments.Drink.DrinkMasterFragment;
 import dk.rus_1_katrinebjerg.barapp.Fragments.HomeFragment;
 import dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourMasterFragment;
@@ -43,7 +45,13 @@ public class BaseWithDrawer extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        loadFragmentFromPosition(position);
+                        if(position == 1)
+                        {
+                            Intent intent = new Intent(getBaseContext(), CreateRusTourActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                            loadFragmentFromPosition(position);
                         return true;
                     }
                 })
@@ -58,7 +66,7 @@ public class BaseWithDrawer extends AppCompatActivity {
     public Map<Integer, Class> setupFragments() {
         Map<Integer, Class> fragmentMap = new HashMap<>();
         fragmentMap.put(0, HomeFragment.class);
-        fragmentMap.put(1, RusTourMasterFragment.class);
+        //fragmentMap.put(1, RusTourMasterFragment.class);
         fragmentMap.put(2, DrinkMasterFragment.class);
         fragmentMap.put(3, TutorMasterFragment.class);
         return fragmentMap;
