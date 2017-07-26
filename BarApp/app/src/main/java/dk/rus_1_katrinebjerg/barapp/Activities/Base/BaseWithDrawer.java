@@ -1,5 +1,6 @@
 package dk.rus_1_katrinebjerg.barapp.Activities.Base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +16,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.HashMap;
 import java.util.Map;
 
+import dk.rus_1_katrinebjerg.barapp.Activities.EndRusturActivity;
 import dk.rus_1_katrinebjerg.barapp.Fragments.Drink.DrinkMasterFragment;
 import dk.rus_1_katrinebjerg.barapp.Fragments.HomeFragment;
 import dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourMasterFragment;
@@ -44,11 +46,27 @@ public class BaseWithDrawer extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         loadFragmentFromPosition(position);
+
                         return true;
                     }
                 })
                 .withToolbar(toolbar)
                 .build();
+
+        drawer.addStickyFooterItem(
+                new PrimaryDrawerItem()
+                        .withIdentifier(2)
+                        .withName("End Trip")
+                        .withTextColorRes(R.color.md_red_A700)
+                        .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener(){
+                            @Override
+                            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                                Intent intent = new Intent(getBaseContext(), EndRusturActivity.class);
+                                startActivity(intent);
+
+                                return true;
+                            }
+                        }));
     }
 
     public Class defaultFragment() {
@@ -61,6 +79,7 @@ public class BaseWithDrawer extends AppCompatActivity {
         fragmentMap.put(1, RusTourMasterFragment.class);
         fragmentMap.put(2, DrinkMasterFragment.class);
         fragmentMap.put(3, TutorMasterFragment.class);
+        fragmentMap.put(4, EndRusturActivity.class);
         return fragmentMap;
     }
 

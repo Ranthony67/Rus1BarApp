@@ -5,4 +5,10 @@
     android:layout_height="match_parent"
     tools:context="dk.rus_1_katrinebjerg.barapp.Activities.EndRusturActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_toolbar" />
+
+    
+
 </RelativeLayout>
