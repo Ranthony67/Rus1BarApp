@@ -6,10 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import dk.rus_1_katrinebjerg.barapp.Model.BarItem;
 import dk.rus_1_katrinebjerg.barapp.R;
@@ -21,6 +26,13 @@ public class NewTourBarItemRecyclerViewAdapter extends RecyclerView.Adapter<NewT
     private final RealmResults<BarItem> mValues;
     private final Context context;
     private Realm realm;
+    public List<Integer> listOfBarItems = new ArrayList<>();
+
+    // getting the ArrayList value
+    public ArrayList getlistOfBarItems()
+    {
+        return (ArrayList) listOfBarItems;
+    }
 
     public NewTourBarItemRecyclerViewAdapter(RealmResults<BarItem> mValues, Context context) {
         this.mValues = mValues;
@@ -44,9 +56,24 @@ public class NewTourBarItemRecyclerViewAdapter extends RecyclerView.Adapter<NewT
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String name = mValues.get(position).name;
         final String price = Double.toString(mValues.get(position).price) + ",-";
+        final String id = String.valueOf(mValues.get(position).id);
 
         holder.txtName.setText(name);
         holder.txtPrice.setText(price);
+        holder.checkBox.setText(id);
+        holder.checkBox.setTextSize(0);
+
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked == true) {
+                    listOfBarItems.add(Integer.parseInt(id));
+                }
+                else {
+                    listOfBarItems.remove(id);
+                }
+            }
+        });
     }
 
     @Override
@@ -58,13 +85,14 @@ public class NewTourBarItemRecyclerViewAdapter extends RecyclerView.Adapter<NewT
 
         public TextView txtName;
         public TextView txtPrice;
+        public CheckBox checkBox;
 
         public ViewHolder(View itemView)
         {
             super(itemView);
-
             txtName = (TextView) itemView.findViewById(R.id.newTour_tutorListView_BarItemName);
             txtPrice = (TextView) itemView.findViewById(R.id.newTour_tutorListView_BarItemPrice);
+            checkBox = (CheckBox) itemView.findViewById(R.id.newTour_tutorListView_BarItemcheckBox);
         }
     }
 }

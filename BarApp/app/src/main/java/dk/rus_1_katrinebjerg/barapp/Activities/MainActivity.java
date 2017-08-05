@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import dk.rus_1_katrinebjerg.barapp.Activities.Base.BaseWithDrawer;
-import dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTurListOfTutor;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -16,7 +15,7 @@ public class MainActivity extends BaseWithDrawer {
     int intentValue = 99;
     int thisTourId;
     int oldTourId;
-    RusTurListOfTutor rusTurListOfTutor;
+    //RusTurListOfTutor rusTurListOfTutor;
     // #######
 
 
@@ -30,7 +29,7 @@ public class MainActivity extends BaseWithDrawer {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
 
-        rusTurListOfTutor = new RusTurListOfTutor();
+        //rusTurListOfTutor = new RusTurListOfTutor();
 
         // ####### Have to be mooved to RusTourMasterFragment when this is changed to Activity
         thisTourId = getIntent().getIntExtra("tourId",intentValue);
@@ -58,13 +57,8 @@ public class MainActivity extends BaseWithDrawer {
 
         Realm.setDefaultConfiguration(config);
     }
-    // ####### Have to be mooved to RusTourMasterFragment when this is changed to Activity
     private void SetTurIdAtTuters(int thisTourId)
     {
-        // send data to  RusTourListOfTutor
-        Bundle bundel = new Bundle();
-        bundel.putInt("SetTurIdAtTuters",thisTourId);
-
         Toast.makeText(getApplicationContext(), "SetTurIdAtTuters_MainActivity", Toast.LENGTH_SHORT).show();
 
     }
@@ -73,5 +67,4 @@ public class MainActivity extends BaseWithDrawer {
     {
 
     }
-    // #######
 }

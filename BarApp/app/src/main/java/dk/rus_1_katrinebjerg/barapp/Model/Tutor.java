@@ -11,6 +11,7 @@ public class Tutor extends RealmObject{
     public String streetName;
     public String imagePath;
 
+    public int tripId;
     public Trip trip;
     public RealmList<BarItem> BarItemsBought;
 }

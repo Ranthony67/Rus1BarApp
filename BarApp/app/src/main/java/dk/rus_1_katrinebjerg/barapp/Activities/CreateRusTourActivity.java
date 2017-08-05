@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dk.rus_1_katrinebjerg.barapp.Activities.Base.BaseWithDrawer;
@@ -24,6 +27,7 @@ import dk.rus_1_katrinebjerg.barapp.R;
 import dk.rus_1_katrinebjerg.barapp.Utils.Keyboard;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -45,7 +49,7 @@ public class CreateRusTourActivity extends BaseWithDrawer {
     private NewTourBarItemRecyclerViewAdapter newTourBarItemRecyclerViewAdapter;
     private NewTourTutorListRecyclerViewAdapter newTourTutorListRecyclerViewAdapter;
 
-    Realm realm;
+    private Realm realm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,10 +121,10 @@ public class CreateRusTourActivity extends BaseWithDrawer {
         //_________________________________________ End _________________________________________
         //______________________________________ Tutor List _____________________________________
 
-        barItemList_RecyclerView = (RecyclerView) findViewById(R.id.rus_tour_tutorList_recycler_view);
-        barItemList_RecyclerView.hasFixedSize();
+        tutorList_RecyclerView = (RecyclerView) findViewById(R.id.rus_tour_tutorList_recycler_view);
+        tutorList_RecyclerView.hasFixedSize();
         LinearLayoutManager tutorListLinearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        barItemList_RecyclerView.setLayoutManager(tutorListLinearLayoutManager);
+        tutorList_RecyclerView.setLayoutManager(tutorListLinearLayoutManager);
         final RealmResults<Tutor> tutors = realm.where(Tutor.class).findAll();
 
         //TODO have to sort list the right way, alphabetic
@@ -135,15 +139,20 @@ public class CreateRusTourActivity extends BaseWithDrawer {
             }
         });
 
-        barItemList_RecyclerView.setAdapter(newTourTutorListRecyclerViewAdapter);
+        tutorList_RecyclerView.setAdapter(newTourTutorListRecyclerViewAdapter);
+
+        // final CheckBox checkBox = (CheckBox)findViewById(R.id.newTour_tutorListView_checkBox);
+        // final ArrayList<Integer> tutorIdList = new ArrayList<>();
+
+
 
         //_________________________________________ End _________________________________________
         //___________________________________ Bar Item List _____________________________________
 
-        tutorList_RecyclerView = (RecyclerView) findViewById(R.id.rus_tour_barItem_recycler_view);
-        tutorList_RecyclerView.hasFixedSize();
+        barItemList_RecyclerView = (RecyclerView) findViewById(R.id.rus_tour_barItem_recycler_view);
+        barItemList_RecyclerView.hasFixedSize();
         LinearLayoutManager barItemListLinearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        tutorList_RecyclerView.setLayoutManager(barItemListLinearLayoutManager);
+        barItemList_RecyclerView.setLayoutManager(barItemListLinearLayoutManager);
         final RealmResults<BarItem> barItem = realm.where(BarItem.class).findAll();
 
         //TODO have to sort list the right way, alphabetic
@@ -158,15 +167,10 @@ public class CreateRusTourActivity extends BaseWithDrawer {
             }
         });
 
-        tutorList_RecyclerView.setAdapter(newTourBarItemRecyclerViewAdapter);
+        barItemList_RecyclerView.setAdapter(newTourBarItemRecyclerViewAdapter);
 
         //_________________________________________ End _________________________________________
-
     }
-
-
-
-
 
     private void addTrip()
     {
@@ -191,6 +195,11 @@ public class CreateRusTourActivity extends BaseWithDrawer {
         realm.close();
         clearFields();
 
+        // insert turId to tutors sceleted in tutor fragment
+        SetTurIdAtTuters(primaryKeyValue, trip);
+        // insert turId to barItems sceleted in barItems fragment
+        SetTurIdAtBarItems(primaryKeyValue, trip);
+
         // Make intent to alert activity that a tour is created  (MAinActivity have to be changed to tousMasterActivity
         Intent tourCreatedIntetnt = new Intent(getApplicationContext(),MainActivity.class);
         tourCreatedIntetnt.putExtra("tourId", primaryKeyValue);
@@ -200,6 +209,54 @@ public class CreateRusTourActivity extends BaseWithDrawer {
     private void clearFields()
     {
         editTripName.setText("");
+    }
+
+    private void SetTurIdAtTuters(int primaryKeyValue, Trip trip)
+    {
+        // Get list of Of Tutors
+        ArrayList<Integer> checkedListOfTuter = newTourTutorListRecyclerViewAdapter.getlistOfTutor();
+        realm = Realm.getDefaultInstance();
+
+        // check if the list is empty
+        if(!checkedListOfTuter.isEmpty())
+        {
+            RealmResults<Tutor> tutors  = realm.where(Tutor.class).findAll();
+            for(Tutor tutor : tutors)
+            {
+                if (checkedListOfTuter.contains(tutor.id))
+                {
+                    realm.beginTransaction();
+                    tutor.tripId = primaryKeyValue;
+                    //tutor.trip = trip; // Cant get Trip instance to work
+                    realm.copyToRealm(tutor);
+                    realm.commitTransaction();
+                }
+            }
+        }
+    }
+
+    private void SetTurIdAtBarItems(int primaryKeyValue, Trip trip)
+    {
+        // Get list of Of Tutors
+        ArrayList<Integer> checkedListOfBarItems = newTourBarItemRecyclerViewAdapter.getlistOfBarItems();
+        realm = Realm.getDefaultInstance();
+
+        // check if the list is empty
+        if(!checkedListOfBarItems.isEmpty())
+        {
+            RealmResults<BarItem> barItems = realm.where(BarItem.class).findAll();
+            for(BarItem barItem : barItems)
+            {
+                if (checkedListOfBarItems.contains(barItem.id))
+                {
+                    realm.beginTransaction();
+                    barItem.tripId = primaryKeyValue;
+                    //tutor.trip = trip; // Cant get Trip instance to work
+                    realm.copyToRealm(barItem);
+                    realm.commitTransaction();
+                }
+            }
+        }
     }
 
 }
