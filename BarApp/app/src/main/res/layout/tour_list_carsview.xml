@@ -11,44 +11,18 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@android:color/transparent"
         card_view:cardElevation="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/tutorImageView"
-                android:scaleType="centerCrop"/>
-
-            <TextView
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="TEST"
-                android:id="@+id/txtTutorName"
-                android:layout_toEndOf="@+id/tutorImageView"
-                android:layout_centerVertical="true"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Test2"
-                android:id="@+id/txtStreetname"
-                android:layout_toEndOf="@+id/txtTutorName"
-                android:layout_centerVertical="true"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit"
-                android:background="@null"
-                android:id="@+id/btnEditTutor"
-                android:layout_toStartOf="@+id/btnDeleteTutor"
-                android:layout_marginRight="5dp"
-                android:layout_centerVertical="true"/>
+                android:text="tour_list_cardview_tourname"
+                android:id="@+id/txtTourname"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -56,8 +30,16 @@
                 android:src="@drawable/ic_delete"
                 android:background="@null"
                 android:id="@+id/btnDeleteTutor"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"/>
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                android:background="@null"
+                android:id="@+id/btnEditTour"
+                android:layout_toStartOf="@+id/btnDeleteTutor"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
