@@ -7,9 +7,10 @@
 
     <ImageView
         android:id="@+id/newTour_tutorListView_imageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
         />
 
     <LinearLayout
@@ -27,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="StreetName"
-            android:textSize="20dp"
+            android:textSize="30dp"
             />
 
         <TextView
