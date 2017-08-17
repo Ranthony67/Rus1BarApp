@@ -1,4 +1,4 @@
-package dk.rus_1_katrinebjerg.barapp.Fragments.Tutor;
+package dk.rus_1_katrinebjerg.barapp.Activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,24 +7,27 @@ import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dk.rus_1_katrinebjerg.barapp.Adapters.TutorListRecycleViewAdapter;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
 import dk.rus_1_katrinebjerg.barapp.Utils.Keyboard;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
-public class TutorInputFragment extends Fragment {
+public class CreateTutorActivity extends AppCompatActivity {
 
     private static final int IMAGE_PICKER_SELECT = 1;
 
@@ -45,28 +48,20 @@ public class TutorInputFragment extends Fragment {
 
     Realm realm;
     String tutorImagePath;
-
-
-    public TutorInputFragment() { }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_tutor_input, container, false);
-
-        ButterKnife.bind(this, root);
-        Realm.init(getContext());
-        return root;
-    }
+    RecyclerView mRecyclerView;
+    TutorListRecycleViewAdapter tutorListRecycleViewAdapter;
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_create_tutor);
+        super.onCreate(savedInstanceState);
 
+        ButterKnife.bind(this);
+        Realm.init(getApplicationContext());
         realm = Realm.getDefaultInstance();
-        editTxtName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
-        editTxtStreetName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
+
+        editTxtName.setOnFocusChangeListener(Keyboard.defaultFocusListener(this));
+        editTxtStreetName.setOnFocusChangeListener(Keyboard.defaultFocusListener(this));
 
         btnAddTutor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -86,14 +81,32 @@ public class TutorInputFragment extends Fragment {
                 startActivityForResult(intent, IMAGE_PICKER_SELECT);
             }
         });
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.tutor_list_recycler_view);
+        mRecyclerView.hasFixedSize();
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        final RealmResults<Tutor> tutors = realm.where(Tutor.class).findAll();
+
+        tutorListRecycleViewAdapter = new TutorListRecycleViewAdapter(tutors, getApplicationContext());
+
+        tutors.addChangeListener(new RealmChangeListener<RealmResults<Tutor>>() {
+            @Override
+            public void onChange(RealmResults<Tutor> element) {
+                tutorListRecycleViewAdapter.notifyDataSetChanged();
+            }
+        });
+
+        mRecyclerView.setAdapter(tutorListRecycleViewAdapter);
     }
 
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == IMAGE_PICKER_SELECT && resultCode == Activity.RESULT_OK){
-            tutorImagePath = getPathFromCameraData(data, getContext());
+            tutorImagePath = getPathFromCameraData(data, getApplicationContext());
 
             if(tutorImagePath != null){
                 Drawable tutorImageDrawable = Drawable.createFromPath(tutorImagePath);
@@ -103,8 +116,7 @@ public class TutorInputFragment extends Fragment {
         }
     }
 
-    public void addTutor()
-    {
+    public void addTutor() {
         Tutor tutor = new Tutor();
         int primaryKeyValue;
         if (realm.where(Tutor.class).max("id") != null)
@@ -147,4 +159,5 @@ public class TutorInputFragment extends Fragment {
         cursor.close();
         return picturePath;
     }
+
 }

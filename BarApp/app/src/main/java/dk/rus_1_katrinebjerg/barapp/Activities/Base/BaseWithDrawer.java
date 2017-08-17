@@ -18,8 +18,9 @@ import java.util.Map;
 
 import dk.rus_1_katrinebjerg.barapp.Activities.CreateDrinkActivity;
 import dk.rus_1_katrinebjerg.barapp.Activities.CreateRusTourActivity;
+import dk.rus_1_katrinebjerg.barapp.Activities.CreateTutorActivity;
+import dk.rus_1_katrinebjerg.barapp.Activities.MainActivity;
 import dk.rus_1_katrinebjerg.barapp.Fragments.HomeFragment;
-import dk.rus_1_katrinebjerg.barapp.Fragments.Tutor.TutorMasterFragment;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 
@@ -53,8 +54,15 @@ public class BaseWithDrawer extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), CreateDrinkActivity.class);
                             startActivity(intent);
                         }
-                        else
-                            loadFragmentFromPosition(position);
+                        else if(position == 3){
+                            Intent intent = new Intent(getApplicationContext(), CreateTutorActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+
                         return true;
                     }
                 })
@@ -63,15 +71,16 @@ public class BaseWithDrawer extends AppCompatActivity {
     }
 
     public Class defaultFragment() {
-        return HomeFragment.class;
+        //return HomeFragment.class;
+        return null;
     }
 
     public Map<Integer, Class> setupFragments() {
         Map<Integer, Class> fragmentMap = new HashMap<>();
-        fragmentMap.put(0, HomeFragment.class);
+        //fragmentMap.put(0, HomeFragment.class);
         //fragmentMap.put(1, RusTourMasterFragment.class);
         //fragmentMap.put(2, DrinkMasterFragment.class);
-        fragmentMap.put(3, TutorMasterFragment.class);
+        //fragmentMap.put(3, TutorMasterFragment.class);
         return fragmentMap;
     }
 
