@@ -1,26 +1,26 @@
-package dk.rus_1_katrinebjerg.barapp.Fragments.Drink;
+package dk.rus_1_katrinebjerg.barapp.Activities;
 
-
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dk.rus_1_katrinebjerg.barapp.Activities.Base.BaseWithDrawer;
+import dk.rus_1_katrinebjerg.barapp.Adapters.BarItemRecycleViewAdapter;
 import dk.rus_1_katrinebjerg.barapp.Model.BarItem;
 import dk.rus_1_katrinebjerg.barapp.R;
 import dk.rus_1_katrinebjerg.barapp.Utils.Keyboard;
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class DrinkInputFragment extends Fragment {
+public class CreateDrinkActivity extends BaseWithDrawer {
 
     @BindView(R.id.drinkName)
     EditText editTxtBarItemName;
@@ -35,29 +35,20 @@ public class DrinkInputFragment extends Fragment {
     Button btnCancelDrink;
 
     Realm realm;
-
-    public DrinkInputFragment() {
-        // Required empty public constructor
-    }
-
+    RecyclerView mRecyclerView;
+    BarItemRecycleViewAdapter barItemListRecycleViewAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View root =  inflater.inflate(R.layout.fragment_drink_input, container, false);
-        ButterKnife.bind(this, root);
-        Realm.init(getContext());
-        return root;
-    }
+    public void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_create_drink);
+        super.onCreate(savedInstanceState);
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        //super.onViewCreated(view, savedInstanceState);
-
+        ButterKnife.bind(this);
+        Realm.init(getApplicationContext());
         realm = Realm.getDefaultInstance();
-        editTxtBarItemName.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
-        editTxtBarItemPrice.setOnFocusChangeListener(Keyboard.defaultFocusListener(getActivity()));
+
+        editTxtBarItemName.setOnFocusChangeListener(Keyboard.defaultFocusListener(this));
+        editTxtBarItemPrice.setOnFocusChangeListener(Keyboard.defaultFocusListener(this ));
 
         btnAddDrink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +62,25 @@ public class DrinkInputFragment extends Fragment {
                 clearFields();
             }
         });
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.baritem_list_recycler_view);
+        mRecyclerView.hasFixedSize();
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        final RealmResults<BarItem> barItems = realm.where(BarItem.class).findAll();
+
+        barItemListRecycleViewAdapter = new BarItemRecycleViewAdapter(barItems, getApplicationContext());
+
+        barItems.addChangeListener(new RealmChangeListener<RealmResults<BarItem>>() {
+            @Override
+            public void onChange(RealmResults<BarItem> element) {
+                barItemListRecycleViewAdapter.notifyDataSetChanged();
+            }
+        });
+
+        mRecyclerView.setAdapter(barItemListRecycleViewAdapter);
     }
 
     private void addDrink() {
@@ -98,4 +108,5 @@ public class DrinkInputFragment extends Fragment {
         editTxtBarItemName.setText("");
         editTxtBarItemPrice.setText("");
     }
+
 }

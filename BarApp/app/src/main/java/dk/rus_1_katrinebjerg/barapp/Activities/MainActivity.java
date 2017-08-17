@@ -98,7 +98,7 @@ public class MainActivity extends BaseWithDrawer {
     public void setRealmConfiguration(){
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("realmConfig")
-                .schemaVersion(3)
+                .schemaVersion(1)
                 .build();
 
         Realm.setDefaultConfiguration(config);
