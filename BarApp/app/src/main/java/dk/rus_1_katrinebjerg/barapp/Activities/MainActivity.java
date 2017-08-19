@@ -105,12 +105,12 @@ public class MainActivity extends BaseWithDrawer {
     }
 
 
-    //public static class MyOnClickListener implements View.OnClickListener {
-      //  @Override
-        //public void onClick(View v) {
-          //  int pos = tutorList_RecyclerView.indexOfChild(v);
-            //Toast.makeText(v.getContext(), "MyOnClickListener, pos: " + pos, Toast.LENGTH_SHORT).show();
-        //}
-    //}
+    public static class MyOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            int pos = tutorList_RecyclerView.indexOfChild(v);
+            Toast.makeText(v.getContext(), "MyOnClickListener, pos: " + pos, Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }

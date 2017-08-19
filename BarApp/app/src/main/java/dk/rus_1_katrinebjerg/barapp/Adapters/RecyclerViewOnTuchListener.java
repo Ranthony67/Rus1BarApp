@@ -10,14 +10,17 @@ import android.widget.Toast;
 public class RecyclerViewOnTuchListener implements RecyclerView.OnItemTouchListener{
     private GestureDetector gestureDetector;
     private ClickListener clickListener;
+    private Context mContext;
 
     public RecyclerViewOnTuchListener(final Context context, final RecyclerView recyclerView, final ClickListener onClickListener){
         this.clickListener = onClickListener;
+        mContext = context;
+
         gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                super.onSingleTapUp(e);
+                //super.onSingleTapUp(e);
 
                 Toast.makeText(context, "onSingleTapUp ", Toast.LENGTH_SHORT).show();
                 return true;
@@ -25,7 +28,7 @@ public class RecyclerViewOnTuchListener implements RecyclerView.OnItemTouchListe
 
             @Override
             public void onLongPress(MotionEvent e) {
-                super.onLongPress(e);
+                //super.onLongPress(e);
 
                 Toast.makeText(context, "onLongPress ", Toast.LENGTH_SHORT).show();
             }
@@ -37,6 +40,7 @@ public class RecyclerViewOnTuchListener implements RecyclerView.OnItemTouchListe
 
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+        Toast.makeText(mContext, "sdgsdfhfghfghfghc ", Toast.LENGTH_SHORT).show();
         return false;
     }
 
