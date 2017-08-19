@@ -58,9 +58,7 @@ public class BaseWithDrawer extends AppCompatActivity {
                         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener(){
                             @Override
                             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                                Intent intent = new Intent(getBaseContext(), EndRusturActivity.class);
-                                startActivity(intent);
-
+                                loadActivityFromPosition(position);
                                 return true;
                             }
                         }));
@@ -76,6 +74,7 @@ public class BaseWithDrawer extends AppCompatActivity {
         map.put(1, CreateRusTourActivity.class);
         map.put(2, CreateDrinkActivity.class);
         map.put(3, CreateTutorActivity.class);
+        map.put(-1, EndRusturActivity.class);
         return map;
     }
 

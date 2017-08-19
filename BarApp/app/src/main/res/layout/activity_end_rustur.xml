@@ -17,5 +17,4 @@
         android:layout_centerVertical="true"
         android:text="END TRIP" />
 
-
 </RelativeLayout>
