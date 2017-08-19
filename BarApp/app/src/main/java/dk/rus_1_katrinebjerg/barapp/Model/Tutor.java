@@ -2,6 +2,8 @@ package dk.rus_1_katrinebjerg.barapp.Model;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
 import io.realm.annotations.PrimaryKey;
 
 public class Tutor extends RealmObject{
@@ -10,8 +12,8 @@ public class Tutor extends RealmObject{
     public String name;
     public String streetName;
     public String imagePath;
+    public RealmList<BarItem> barItemsBought;
 
-    public int tripId;
-    public Trip trip;
-    public RealmList<BarItem> BarItemsBought;
+    @LinkingObjects("tutors")
+    public final RealmResults<Trip> trips = null;
 }
