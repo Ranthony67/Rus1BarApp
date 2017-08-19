@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dk.rus_1_katrinebjerg.barapp.Activities.CreateTutorActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/toolbar">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:background="@drawable/ic_person"
+                android:id="@+id/tutorinput_tutorImage"
+                android:layout_marginTop="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editTxtName"
+                android:hint="Name"
+                android:layout_below="@+id/tutorinput_tutorImage"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:layout_below="@+id/editTxtName"
+                android:layout_marginTop="20dp"
+                android:id="@+id/editTxtStreetname"
+                android:layout_alignStart="@+id/editTxtName"
+                android:hint="Streetname" />
+
+            <Button
+                android:text="Add Tutor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAddTutor"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@+id/editTxtStreetname"
+                android:layout_below="@+id/editTxtStreetname"
+                android:layout_marginTop="20dp"/>
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnCancelTutor"
+                android:layout_alignBaseline="@+id/btnAddTutor"
+                android:layout_alignBottom="@+id/btnAddTutor"
+                android:layout_alignEnd="@+id/editTxtStreetname" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/tutor_list_recycler_view"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

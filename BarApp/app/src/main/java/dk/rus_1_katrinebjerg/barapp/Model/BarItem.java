@@ -9,6 +9,7 @@ public class BarItem extends RealmObject{
     public String name;
     public double price;
 
+    public int tripId;
     public Trip trip;
     public Tutor tutor;
 }

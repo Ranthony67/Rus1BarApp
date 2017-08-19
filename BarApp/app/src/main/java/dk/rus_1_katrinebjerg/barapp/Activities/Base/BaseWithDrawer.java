@@ -1,9 +1,8 @@
 package dk.rus_1_katrinebjerg.barapp.Activities.Base;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,26 +14,25 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import dk.rus_1_katrinebjerg.barapp.Activities.CreateDrinkActivity;
+import dk.rus_1_katrinebjerg.barapp.Activities.CreateRusTourActivity;
+import dk.rus_1_katrinebjerg.barapp.Activities.CreateTutorActivity;
 import dk.rus_1_katrinebjerg.barapp.Activities.EndRusturActivity;
-import dk.rus_1_katrinebjerg.barapp.Fragments.Drink.DrinkMasterFragment;
-import dk.rus_1_katrinebjerg.barapp.Fragments.HomeFragment;
-import dk.rus_1_katrinebjerg.barapp.Fragments.RusTour.RusTourMasterFragment;
-import dk.rus_1_katrinebjerg.barapp.Fragments.Tutor.TutorMasterFragment;
+import dk.rus_1_katrinebjerg.barapp.Activities.MainActivity;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 
 public class BaseWithDrawer extends AppCompatActivity {
 
     public Drawer drawer;
-    private Map<Integer, Class> fragmentMap;
+    private Map<Integer, Class> activityMap;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Realm.init(this);
-        fragmentMap = setupFragments();
+        activityMap = setupFragments();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -45,8 +43,7 @@ public class BaseWithDrawer extends AppCompatActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        loadFragmentFromPosition(position);
-
+                        loadActivityFromPosition(position);
                         return true;
                     }
                 })
@@ -69,52 +66,51 @@ public class BaseWithDrawer extends AppCompatActivity {
                         }));
     }
 
-    public Class defaultFragment() {
-        return HomeFragment.class;
+    public Class defaultActivity() {
+        return MainActivity.class;
     }
 
     public Map<Integer, Class> setupFragments() {
-        Map<Integer, Class> fragmentMap = new HashMap<>();
-        fragmentMap.put(0, HomeFragment.class);
-        fragmentMap.put(1, RusTourMasterFragment.class);
-        fragmentMap.put(2, DrinkMasterFragment.class);
-        fragmentMap.put(3, TutorMasterFragment.class);
-        fragmentMap.put(4, EndRusturActivity.class);
-        return fragmentMap;
+        Map<Integer, Class> map = new HashMap<>();
+        map.put(0, MainActivity.class);
+        map.put(1, CreateRusTourActivity.class);
+        map.put(2, CreateDrinkActivity.class);
+        map.put(3, CreateTutorActivity.class);
+        return map;
     }
 
-    private IDrawerItem[] generateDrawerItems(int resourceId) {
+    private IDrawerItem[] generateDrawerItems(int resourceId)
+    {
         String[] menuItems = getResources().getStringArray(resourceId);
         IDrawerItem[] items = new IDrawerItem[menuItems.length];
 
-        for (int i = 0; i < menuItems.length; i++) {
+        for (int i = 0; i < menuItems.length; i++)
+        {
             String name = menuItems[i];
             items[i] = new PrimaryDrawerItem().withIdentifier(1).withName(name);
         }
         return items;
     }
 
-    public void loadFragmentFromClass(Class mClass) {
-        mClass = mClass == null ? defaultFragment() : mClass;
+    public void loadActivityFromClass(Class mClass) {
+        mClass = mClass == null ? defaultActivity() : mClass;
 
-        Fragment fragment = null;
+        Activity activity = null;
         try {
-            fragment = (Fragment) mClass.newInstance();
+            activity = (Activity) mClass.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        Intent intent = new Intent(getApplicationContext(), activity.getClass());
+        startActivity(intent);
     }
 
-    public void loadFragmentFromPosition(int position) {
-        Class mClass = fragmentMap.get(position);
-        loadFragmentFromClass(mClass);
+    public void loadActivityFromPosition(int position) {
+        Class mClass = activityMap.get(position);
+        loadActivityFromClass(mClass);
         drawer.closeDrawer();
     }
 }

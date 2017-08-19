@@ -1,5 +1,4 @@
-package dk.rus_1_katrinebjerg.barapp.Fragments.Tutor;
-
+package dk.rus_1_katrinebjerg.barapp.Fragments.RusTour;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,15 +8,21 @@ import android.view.ViewGroup;
 
 import dk.rus_1_katrinebjerg.barapp.R;
 
-public class TutorMasterFragment extends Fragment {
+/**
+ *
+ */
+public class RusTurListOfBarItems extends Fragment {
 
-    public TutorMasterFragment() {}
+
+    public RusTurListOfBarItems() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tutor_master, container, false);
+        return inflater.inflate(R.layout.fragment_rus_tour_list_of_bar_items, container, false);
     }
 
 }

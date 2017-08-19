@@ -20,8 +20,8 @@ import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListRecycleViewAdapter.ViewHolder> {
-
+public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListRecycleViewAdapter.ViewHolder>
+{
     private final RealmResults<Tutor> mValues;
     private final Context context;
     private Realm realm;
@@ -93,7 +93,8 @@ public class TutorListRecycleViewAdapter extends RecyclerView.Adapter<TutorListR
         public ImageButton btnEditTutor;
         public ImageButton btnDeleteTutor;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView)
+        {
             super(itemView);
 
             imgTutor = (ImageView) itemView.findViewById(R.id.tutorImageView);
