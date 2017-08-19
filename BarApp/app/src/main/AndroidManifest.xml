@@ -21,9 +21,12 @@
         <activity android:name=".Activities.EndRusturActivity" />
         <activity android:name=".Activities.BuyActivity" />
         <activity android:name=".Activities.ToolbarActivity" />
-        <activity android:name=".Activities.CreateRusTourActivity" />
-        <activity android:name=".Activities.CreateDrinkActivity" />
-        <activity android:name=".Activities.CreateTutorActivity"></activity>
+        <activity android:name=".Activities.CreateRusTourActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Activities.CreateDrinkActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Activities.CreateTutorActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
