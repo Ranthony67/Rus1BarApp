@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dk.rus_1_katrinebjerg.barapp.Activities.CreateDrinkActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Fragments.Drink.DrinkInputFragment"
+            android:layout_weight="1">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drinkName"
+                android:hint="@string/drink_name_hint"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="138dp"
+                android:ems="10"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/drinkPrice"
+                android:inputType="phone"
+                android:hint="@string/drink_price_hint"
+                android:layout_alignTop="@+id/drinkName"
+                android:layout_alignEnd="@+id/drinkName"
+                android:ems="10"
+                android:layout_marginTop="104dp"/>
+
+            <Button
+                android:text="@string/add_drink_btnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAddDrink"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@+id/drinkPrice"
+                android:layout_below="@+id/drinkPrice"
+                android:layout_marginTop="20dp"/>
+
+            <Button
+                android:text="@string/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnCancelDrink"
+                android:layout_alignBaseline="@+id/btnAddDrink"
+                android:layout_alignBottom="@+id/btnAddDrink"
+                android:layout_alignEnd="@+id/drinkPrice" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/baritem_list_recycler_view"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

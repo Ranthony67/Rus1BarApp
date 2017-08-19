@@ -21,7 +21,9 @@
         <activity android:name=".Activities.EndRusturActivity" />
         <activity android:name=".Activities.BuyActivity" />
         <activity android:name=".Activities.ToolbarActivity" />
-        <activity android:name=".Activities.CreateRusTourActivity"></activity>
+        <activity android:name=".Activities.CreateRusTourActivity" />
+        <activity android:name=".Activities.CreateDrinkActivity" />
+        <activity android:name=".Activities.CreateTutorActivity"></activity>
     </application>
 
 </manifest>

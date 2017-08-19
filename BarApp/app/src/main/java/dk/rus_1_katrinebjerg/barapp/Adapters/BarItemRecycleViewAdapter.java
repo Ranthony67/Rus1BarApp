@@ -15,8 +15,8 @@ import io.realm.RealmResults;
 
 public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecycleViewAdapter.ViewHolder>{
 
-    private final RealmResults<BarItem> mValues;
-    private final Context context;
+    final RealmResults<BarItem> mValues;
+    final Context context;
     private Realm realm;
 
     public BarItemRecycleViewAdapter(RealmResults<BarItem> mValues, Context context) {
@@ -29,7 +29,6 @@ public class BarItemRecycleViewAdapter extends RecyclerView.Adapter<BarItemRecyc
                 .inflate(R.layout.baritem_list_cardview, parent, false);
 
         BarItemRecycleViewAdapter.ViewHolder viewHolder = new BarItemRecycleViewAdapter.ViewHolder(view);
-        Realm.init(context);
         realm = Realm.getDefaultInstance();
         return viewHolder;
     }
