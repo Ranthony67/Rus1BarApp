@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dk.rus_1_katrinebjerg.barapp.Activities.Base.BaseWithDrawer;
 import dk.rus_1_katrinebjerg.barapp.Adapters.TutorListRecycleViewAdapter;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
@@ -27,7 +28,7 @@ import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
-public class CreateTutorActivity extends AppCompatActivity {
+public class CreateTutorActivity extends BaseWithDrawer {
 
     private static final int IMAGE_PICKER_SELECT = 1;
 
@@ -52,7 +53,7 @@ public class CreateTutorActivity extends AppCompatActivity {
     TutorListRecycleViewAdapter tutorListRecycleViewAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_create_tutor);
         super.onCreate(savedInstanceState);
 
@@ -137,7 +138,6 @@ public class CreateTutorActivity extends AppCompatActivity {
         realm.copyToRealm(tutor);
         realm.commitTransaction();
 
-        realm.close();
         clearFields();
     }
 
@@ -160,4 +160,9 @@ public class CreateTutorActivity extends AppCompatActivity {
         return picturePath;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 }

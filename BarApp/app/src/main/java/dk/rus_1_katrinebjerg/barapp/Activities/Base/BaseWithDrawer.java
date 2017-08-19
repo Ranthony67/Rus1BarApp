@@ -20,7 +20,6 @@ import dk.rus_1_katrinebjerg.barapp.Activities.CreateDrinkActivity;
 import dk.rus_1_katrinebjerg.barapp.Activities.CreateRusTourActivity;
 import dk.rus_1_katrinebjerg.barapp.Activities.CreateTutorActivity;
 import dk.rus_1_katrinebjerg.barapp.Activities.MainActivity;
-import dk.rus_1_katrinebjerg.barapp.Fragments.HomeFragment;
 import dk.rus_1_katrinebjerg.barapp.R;
 import io.realm.Realm;
 

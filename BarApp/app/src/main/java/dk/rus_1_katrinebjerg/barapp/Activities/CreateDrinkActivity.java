@@ -100,7 +100,6 @@ public class CreateDrinkActivity extends BaseWithDrawer {
         realm.copyToRealm(barItem);
         realm.commitTransaction();
 
-        realm.close();
         clearFields();
     }
 
@@ -109,4 +108,9 @@ public class CreateDrinkActivity extends BaseWithDrawer {
         editTxtBarItemPrice.setText("");
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 }
