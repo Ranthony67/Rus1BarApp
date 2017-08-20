@@ -47,6 +47,7 @@ public class MainActivity extends BaseWithDrawer {
     Tutor tutor;
     int amount;
 
+
     public static HomeTuterRecyclerViewAdapter homeTuterRecyclerViewAdapter;
     public static RecyclerView tutorList_RecyclerView;
 
@@ -82,8 +83,8 @@ public class MainActivity extends BaseWithDrawer {
 
             @Override
             public void onClick(View view, int pos) {
-                final String thisTuter = tutors.get(pos).streetName;
                 tutor = tutors.get(pos);
+                String thisTuter = tutors.get(pos).streetName;
 
                 AlertDialog.Builder adBuilder = new AlertDialog.Builder(MainActivity.this);
                 mDialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.fragment_main_activity_bar_item_alert_dialog, null);
@@ -94,6 +95,7 @@ public class MainActivity extends BaseWithDrawer {
                 LinearLayoutManager buyBarItem_LayoutManager = new LinearLayoutManager(adBuilder.getContext());
                 buyBarItem_RecyclerView.setLayoutManager(buyBarItem_LayoutManager);
                 RealmResults<BarItem> barItems = realm.where(BarItem.class).equalTo("tripId", thisTourId).findAll();
+
                 buyBarItemRecyclerViewAdapter = new HomeActivity_BarItem_RecyclerViewAdapter(barItems, adBuilder.getContext());
 
                 barItems.addChangeListener(new RealmChangeListener<RealmResults<BarItem>>() {
@@ -112,7 +114,6 @@ public class MainActivity extends BaseWithDrawer {
                         "Buy",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
                                 HashMap<Integer,Integer> boughtBarItems = buyBarItemRecyclerViewAdapter.getBarItemsBought();
 
                                 // for each baritem bought add BarItem on barItemBought list at tutor
@@ -129,7 +130,6 @@ public class MainActivity extends BaseWithDrawer {
                                     realm.copyToRealm(tutor);
                                     realm.commitTransaction();
                                 }
-
                                 Toast.makeText(getApplicationContext(), "Cheers god sir", Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                             }
@@ -139,7 +139,6 @@ public class MainActivity extends BaseWithDrawer {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Toast.makeText(getApplicationContext(), "What a WUZZ!", Toast.LENGTH_SHORT).show();
-
                                 // the buy is cancled, do nothing
                                 dialog.cancel();
                             }
@@ -178,3 +177,4 @@ public class MainActivity extends BaseWithDrawer {
         Realm.setDefaultConfiguration(config);
     }
 }
+
