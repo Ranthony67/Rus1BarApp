@@ -72,13 +72,7 @@ public class EndRusturActivity extends BaseWithDrawer {
     }
 
     private void endTrip() throws IOException {
-
-        int tripId = realm.where(Trip.class).max("id").intValue();
-
-        Trip trip = realm.where(Trip.class).equalTo("id", tripId).findFirst();
-
-        RealmResults<Tutor> tutors = realm.where(Tutor.class).equalTo("trip.id", tripId).findAll();
-        RealmResults<BarItem> barItems = realm.where(BarItem.class).equalTo("trip.id", tripId).findAll();
+        Trip trip = realm.where(Trip.class).equalTo("isActive", true).findFirst();
 
         File folder = new File(Environment.getExternalStorageDirectory() + "/RusTour");
         FileWriter fw = new FileWriter(folder.toString() + trip.name + ".csv");
@@ -88,14 +82,14 @@ public class EndRusturActivity extends BaseWithDrawer {
         fw.append("Total amount");
         fw.append(",");
 
-        for(int i = 0; i < tutors.size(); i++){
-            Tutor tutor = tutors.get(i);
+        for(int i = 0; i < trip.tutors.size(); i++){
+            Tutor tutor = trip.tutors.get(i);
 
             fw.append(tutor.name);
 
             double price = 0;
-            for(int j = 0; j < tutor.BarItemsBought.size(); j++){
-                price += tutor.BarItemsBought.get(j).price;
+            for(int j = 0; j < tutor.barItemsBought.size(); j++){
+                price += tutor.barItemsBought.get(j).price;
             }
             fw.append(String.valueOf(price * 0.75));
             fw.append(",");
