@@ -18,7 +18,6 @@ public class HomeActivity_BarItem_RecyclerViewAdapter extends RecyclerView.Adapt
     private final Context context;
     private Realm realm;
 
-
     public HomeActivity_BarItem_RecyclerViewAdapter(RealmResults<BarItem> mValues, Context context)
     {
         this.mValues = mValues;
@@ -27,9 +26,8 @@ public class HomeActivity_BarItem_RecyclerViewAdapter extends RecyclerView.Adapt
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(dk.rus_1_katrinebjerg.barapp.R.layout.baritem_listview , parent, false);
-
-        HomeActivity_BarItem_RecyclerViewAdapter.ViewHolder viewHolder = new HomeActivity_BarItem_RecyclerViewAdapter.ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.buy_baritem_listview , parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
 
         Realm.init(context);
         realm = Realm.getDefaultInstance();
@@ -37,15 +35,13 @@ public class HomeActivity_BarItem_RecyclerViewAdapter extends RecyclerView.Adapt
     }
 
     @Override
-    public void onBindViewHolder(HomeActivity_BarItem_RecyclerViewAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final String name = mValues.get(position).name;
         final double price = mValues.get(position).price;
 
         holder.Name.setText(name);
         holder.Price.setText(String.valueOf(price));
     }
-
-
 
     @Override
     public int getItemCount() { return mValues.size(); }
@@ -58,8 +54,9 @@ public class HomeActivity_BarItem_RecyclerViewAdapter extends RecyclerView.Adapt
         public ViewHolder(View itemView)
         {
             super(itemView);
-            Name = (TextView) itemView.findViewById(R.id.mainActivity_BarItem_name);
-            Price = (TextView) itemView.findViewById(R.id.mainActivity_BarItem_price);
+
+            Name = (TextView) itemView.findViewById(R.id.buyBarItemName);
+            Price = (TextView) itemView.findViewById(R.id.buyBarItemPrice);
         }
     }
 }
