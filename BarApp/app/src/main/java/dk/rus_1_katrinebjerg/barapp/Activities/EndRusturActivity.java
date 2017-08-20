@@ -96,5 +96,10 @@ public class EndRusturActivity extends BaseWithDrawer {
         }
 
         fw.close();
+
+        realm.beginTransaction();
+        trip.isActive = false;
+        realm.copyToRealmOrUpdate(trip);
+        realm.commitTransaction();
     }
 }

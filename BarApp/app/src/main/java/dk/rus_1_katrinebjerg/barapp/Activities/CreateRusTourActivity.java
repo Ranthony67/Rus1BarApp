@@ -185,6 +185,7 @@ public class CreateRusTourActivity extends BaseWithDrawer {
 
         trip.id = primaryKeyValue;
         trip.name = editTripName.getText().toString();
+        trip.isActive = true;
 
         realm.beginTransaction();
         realm.copyToRealm(trip);
