@@ -192,10 +192,7 @@ public class CreateRusTourActivity extends BaseWithDrawer {
 
         clearFields();
 
-        // insert turId to tutors sceleted in tutor fragment
-        addTutorsToTour(primaryKeyValue, trip);
-        // insert turId to barItems sceleted in barItems fragment
-        addBarItemsToTour(primaryKeyValue, trip);
+        addTutorsAndBarItemsToTour();
 
         // Make intent to alert activity that a tour is created  (MAinActivity have to be changed to tousMasterActivity
         Intent tourCreatedIntetnt = new Intent(getApplicationContext(),MainActivity.class);
@@ -208,61 +205,26 @@ public class CreateRusTourActivity extends BaseWithDrawer {
         editTripName.setText("");
     }
 
-//    private void addTutorsAndBarItemsToTour(){
-//        RealmResults<Trip> trip = realm.where(Trip.class).equalTo("isActive", true).findAll();
-//
-//        ArrayList<Integer> checkedListOfTutor = newTourTutorListRecyclerViewAdapter.getlistOfTutor();
-//        realm = Realm.getDefaultInstance();
-//
-//        // check if the list is empty
-//        if(!checkedListOfTutor.isEmpty())
-//        {
-//            RealmResults<Tutor> tutors  = realm.where(Tutor.class).findAll();
-//            for(Tutor tutor : tutors)
-//            {
-//                if (checkedListOfTutor.contains(tutor.id))
-//                {
-//                    realm.beginTransaction();
-//
-//                }
-//            }
-//        }
-//
-//        realm.copyToRealm(trip);
-//        realm.commitTransaction();
-//    }
+    private void addTutorsAndBarItemsToTour(){
+        Trip trip = realm.where(Trip.class).equalTo("isActive", true).findFirst();
 
-    private void addTutorsToTour(int primaryKeyValue, Trip trip)
-    {
-        // Get list of Of Tutors
-        ArrayList<Integer> checkedListOfTuter = newTourTutorListRecyclerViewAdapter.getlistOfTutor();
+        ArrayList<Integer> checkedListOfTutor = newTourTutorListRecyclerViewAdapter.getlistOfTutor();
+        ArrayList<Integer> checkedListOfBarItems = newTourBarItemRecyclerViewAdapter.getlistOfBarItems();
         realm = Realm.getDefaultInstance();
 
-        // check if the list is empty
-        if(!checkedListOfTuter.isEmpty())
+        realm.beginTransaction();
+        if(!checkedListOfTutor.isEmpty())
         {
             RealmResults<Tutor> tutors  = realm.where(Tutor.class).findAll();
             for(Tutor tutor : tutors)
             {
-                if (checkedListOfTuter.contains(tutor.id))
+                if (checkedListOfTutor.contains(tutor.id))
                 {
-                    realm.beginTransaction();
-                    tutor.tripId = primaryKeyValue;
-                    //tutor.trip = trip; // Cant get Trip instance to work
-                    realm.copyToRealm(tutor);
-                    realm.commitTransaction();
+                    trip.tutors.add(tutor);
                 }
             }
         }
-    }
 
-    private void addBarItemsToTour(int primaryKeyValue, Trip trip)
-    {
-        // Get list of Of Tutors
-        ArrayList<Integer> checkedListOfBarItems = newTourBarItemRecyclerViewAdapter.getlistOfBarItems();
-        realm = Realm.getDefaultInstance();
-
-        // check if the list is empty
         if(!checkedListOfBarItems.isEmpty())
         {
             RealmResults<BarItem> barItems = realm.where(BarItem.class).findAll();
@@ -270,16 +232,14 @@ public class CreateRusTourActivity extends BaseWithDrawer {
             {
                 if (checkedListOfBarItems.contains(barItem.id))
                 {
-                    realm.beginTransaction();
-                    barItem.tripId = primaryKeyValue;
-                    //tutor.trip = trip; // Cant get Trip instance to work
-                    realm.copyToRealm(barItem);
-                    realm.commitTransaction();
+                    trip.barItems.add(barItem);
                 }
             }
         }
-    }
 
+        realm.copyToRealm(trip);
+        realm.commitTransaction();
+    }
 
     @Override
     protected void onDestroy() {
