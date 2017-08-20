@@ -18,7 +18,7 @@
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/alertDialog_barItems_RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/alertDialog_header"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"

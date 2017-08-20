@@ -21,6 +21,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 import butterknife.ButterKnife;
 import dk.rus_1_katrinebjerg.barapp.Activities.Base.BaseWithDrawer;
 import dk.rus_1_katrinebjerg.barapp.Adapters.HomeActivity_BarItem_RecyclerViewAdapter;
@@ -42,7 +44,8 @@ public class MainActivity extends BaseWithDrawer {
     int intentValue = 99;
     int thisTourId;
     View mDialogView;
-
+    Tutor tutor;
+    int amount;
 
     public static HomeTuterRecyclerViewAdapter homeTuterRecyclerViewAdapter;
     public static RecyclerView tutorList_RecyclerView;
@@ -79,7 +82,8 @@ public class MainActivity extends BaseWithDrawer {
 
             @Override
             public void onClick(View view, int pos) {
-                String thisTuter = tutors.get(pos).streetName;
+                final String thisTuter = tutors.get(pos).streetName;
+                tutor = tutors.get(pos);
 
                 AlertDialog.Builder adBuilder = new AlertDialog.Builder(MainActivity.this);
                 mDialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.fragment_main_activity_bar_item_alert_dialog, null);
@@ -89,7 +93,7 @@ public class MainActivity extends BaseWithDrawer {
                 buyBarItem_RecyclerView.hasFixedSize();
                 LinearLayoutManager buyBarItem_LayoutManager = new LinearLayoutManager(adBuilder.getContext());
                 buyBarItem_RecyclerView.setLayoutManager(buyBarItem_LayoutManager);
-                final RealmResults<BarItem> barItems = realm.where(BarItem.class).findAll();
+                RealmResults<BarItem> barItems = realm.where(BarItem.class).equalTo("tripId", thisTourId).findAll();
                 buyBarItemRecyclerViewAdapter = new HomeActivity_BarItem_RecyclerViewAdapter(barItems, adBuilder.getContext());
 
                 barItems.addChangeListener(new RealmChangeListener<RealmResults<BarItem>>() {
@@ -101,8 +105,6 @@ public class MainActivity extends BaseWithDrawer {
 
                 buyBarItem_RecyclerView.setAdapter(buyBarItemRecyclerViewAdapter);
 
-
-
                 mHeader.setText(thisTuter + " is thirsty!!");
                 adBuilder.setView(mDialogView);
 
@@ -110,6 +112,24 @@ public class MainActivity extends BaseWithDrawer {
                         "Buy",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+
+                                HashMap<Integer,Integer> boughtBarItems = buyBarItemRecyclerViewAdapter.getBarItemsBought();
+
+                                // for each baritem bought add BarItem on barItemBought list at tutor
+                                for (Integer key : boughtBarItems.keySet()) {
+                                    // get barItem with key
+                                    BarItem thisBarItem = realm.where(BarItem.class).equalTo("id", key).findFirst();
+
+                                    realm.beginTransaction();
+                                    // add all to list of items bought (e.g. amount = 5)
+                                    for(amount = boughtBarItems.get(key) ; amount > 0 ; --amount){
+                                        tutor.BarItemsBought.add(thisBarItem);
+                                    }
+
+                                    realm.copyToRealm(tutor);
+                                    realm.commitTransaction();
+                                }
+
                                 Toast.makeText(getApplicationContext(), "Cheers god sir", Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                             }
@@ -119,6 +139,8 @@ public class MainActivity extends BaseWithDrawer {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Toast.makeText(getApplicationContext(), "What a WUZZ!", Toast.LENGTH_SHORT).show();
+
+                                // the buy is cancled, do nothing
                                 dialog.cancel();
                             }
                         });

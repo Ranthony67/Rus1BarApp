@@ -82,7 +82,9 @@ public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<Ne
                     listOfTutor.add(Integer.parseInt(id));
                 }
                 else {
-                    listOfTutor.remove(id);
+                    int idToRemove = Integer.parseInt(id);
+                    int pos = listOfTutor.indexOf(idToRemove);
+                    listOfTutor.remove(pos);
                 }
             }
         });
