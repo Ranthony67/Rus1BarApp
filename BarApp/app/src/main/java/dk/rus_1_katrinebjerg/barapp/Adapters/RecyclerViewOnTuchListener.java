@@ -7,27 +7,29 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import dk.rus_1_katrinebjerg.barapp.R;
+
 public class RecyclerViewOnTuchListener implements RecyclerView.OnItemTouchListener{
     private GestureDetector gestureDetector;
     private ClickListener clickListener;
+    private Context mContext;
 
     public RecyclerViewOnTuchListener(final Context context, final RecyclerView recyclerView, final ClickListener onClickListener){
         this.clickListener = onClickListener;
+        mContext = context;
+
         gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
 
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
-                super.onSingleTapUp(e);
 
-                Toast.makeText(context, "onSingleTapUp ", Toast.LENGTH_SHORT).show();
                 return true;
             }
 
             @Override
             public void onLongPress(MotionEvent e) {
-                super.onLongPress(e);
-
-                Toast.makeText(context, "onLongPress ", Toast.LENGTH_SHORT).show();
+                //super.onLongPress(e);
+                Toast.makeText(context, "Long Click is not suported", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -37,6 +39,13 @@ public class RecyclerViewOnTuchListener implements RecyclerView.OnItemTouchListe
 
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+        View child = rv.findChildViewUnder(e.getX(), e.getY());
+
+        if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
+
+            clickListener.onClick(child, rv.indexOfChild(child));
+        }
+
         return false;
     }
 

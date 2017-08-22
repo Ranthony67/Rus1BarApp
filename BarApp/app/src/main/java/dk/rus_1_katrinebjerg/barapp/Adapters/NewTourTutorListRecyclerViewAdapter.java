@@ -62,7 +62,14 @@ public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<Ne
         Drawable NewTourTutorImageDrawable = Drawable.createFromPath(mValues.get(position).imagePath);
         BitmapDrawable NewTourTutorImageBitmapDrawable = (BitmapDrawable) NewTourTutorImageDrawable;
 
-        holder.imgTutor.setImageBitmap(NewTourTutorImageBitmapDrawable.getBitmap());
+        if(NewTourTutorImageBitmapDrawable != null){
+            holder.imgTutor.setImageBitmap(NewTourTutorImageBitmapDrawable.getBitmap());
+        }else{
+            BitmapDrawable tutorImageBitmapDrawable = (BitmapDrawable) context.getResources().getDrawable(R.drawable.ic_person);
+            holder.imgTutor.setImageBitmap(tutorImageBitmapDrawable.getBitmap());
+        }
+
+
         holder.txtName.setText(name);
         holder.txtStreetName.setText(streetName);
         holder.checkBox.setText(id);
@@ -75,7 +82,9 @@ public class NewTourTutorListRecyclerViewAdapter extends RecyclerView.Adapter<Ne
                     listOfTutor.add(Integer.parseInt(id));
                 }
                 else {
-                    listOfTutor.remove(id);
+                    int idToRemove = Integer.parseInt(id);
+                    int pos = listOfTutor.indexOf(idToRemove);
+                    listOfTutor.remove(pos);
                 }
             }
         });

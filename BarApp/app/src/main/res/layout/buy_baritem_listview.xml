@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/buyBarItemLinearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyBarItemName"
+            android:text="DrinkName"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/buyBarItemPrice"
+            android:layout_alignBottom="@+id/buyBarItemPrice"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyBarItemPrice"
+            android:text="DrinkPrice"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/buyBarItemBtnMinus"
+            android:layout_alignBottom="@+id/buyBarItemBtnMinus"
+            android:layout_toStartOf="@+id/buyBarItemBtnMinus" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:id="@+id/buyBarItemBtnMinus"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/buyBarItemEditTextItemCount" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:tag="nb"
+            android:id="@+id/buyBarItemEditTextItemCount"
+            android:layout_alignBaseline="@+id/buyBarItemBtnPlus"
+            android:layout_alignBottom="@+id/buyBarItemBtnPlus"
+            android:layout_toStartOf="@+id/buyBarItemBtnPlus" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyBarItemBtnPlus"
+            android:text="+"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:layout_alignParentEnd="true"/>
+</RelativeLayout>

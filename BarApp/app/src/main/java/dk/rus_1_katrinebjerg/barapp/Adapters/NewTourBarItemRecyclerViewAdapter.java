@@ -66,11 +66,13 @@ public class NewTourBarItemRecyclerViewAdapter extends RecyclerView.Adapter<NewT
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked == true) {
+                if(isChecked) {
                     listOfBarItems.add(Integer.parseInt(id));
                 }
-                else {
-                    listOfBarItems.remove(id);
+                else{
+                    int idToRemove = Integer.parseInt(id);
+                    int pos = listOfBarItems.indexOf(idToRemove);
+                    listOfBarItems.remove(pos);
                 }
             }
         });
