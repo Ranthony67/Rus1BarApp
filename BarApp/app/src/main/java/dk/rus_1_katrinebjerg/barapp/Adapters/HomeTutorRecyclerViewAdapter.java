@@ -4,29 +4,23 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import dk.rus_1_katrinebjerg.barapp.Activities.MainActivity;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
-import io.realm.Realm;
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
-public class HomeTuterRecyclerViewAdapter extends RecyclerView.Adapter<HomeTuterRecyclerViewAdapter.ViewHolder>
+public class HomeTutorRecyclerViewAdapter extends RecyclerView.Adapter<HomeTutorRecyclerViewAdapter.ViewHolder>
 {
-    public final RealmResults<Tutor> mValues;
+    public final RealmList<Tutor> mValues;
     private final Context context;
-    //private Realm realm;
 
-    public HomeTuterRecyclerViewAdapter(RealmResults<Tutor> mValues, Context context)
+    public HomeTutorRecyclerViewAdapter(RealmList<Tutor> mValues, Context context)
     {
         this.mValues = mValues;
         this.context = context;
@@ -35,13 +29,8 @@ public class HomeTuterRecyclerViewAdapter extends RecyclerView.Adapter<HomeTuter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tutor_list_listview, parent, false);
+        final HomeTutorRecyclerViewAdapter.ViewHolder viewHolder = new HomeTutorRecyclerViewAdapter.ViewHolder(view);
 
-        final HomeTuterRecyclerViewAdapter.ViewHolder viewHolder = new HomeTuterRecyclerViewAdapter.ViewHolder(view);
-
-        //view.setOnClickListener(new MainActivity.MyOnClickListener());
-
-        Realm.init(context);
-        //realm = Realm.getDefaultInstance();
         return viewHolder;
     }
 
@@ -63,9 +52,6 @@ public class HomeTuterRecyclerViewAdapter extends RecyclerView.Adapter<HomeTuter
         holder.txtName.setText(name);
         holder.txtStreetName.setText(streetName);
         holder.checkBox.setVisibility(View.INVISIBLE);
-
-
-
     }
 
     @Override
@@ -90,11 +76,6 @@ public class HomeTuterRecyclerViewAdapter extends RecyclerView.Adapter<HomeTuter
             checkBox = (CheckBox) itemView.findViewById(R.id.newTour_tutorListView_checkBox);
         }
     }
-
-
-
-
-
 }
 
 

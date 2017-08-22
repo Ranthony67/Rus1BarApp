@@ -211,7 +211,6 @@ public class CreateRusTourActivity extends BaseWithDrawer {
 
         ArrayList<Integer> checkedListOfTutor = newTourTutorListRecyclerViewAdapter.getlistOfTutor();
         ArrayList<Integer> checkedListOfBarItems = newTourBarItemRecyclerViewAdapter.getlistOfBarItems();
-        realm = Realm.getDefaultInstance();
 
         realm.beginTransaction();
         if(!checkedListOfTutor.isEmpty())
