@@ -53,7 +53,7 @@ public class MainActivity extends BaseWithDrawer {
         LinearLayoutManager tutorListLinearLayoutManager = new LinearLayoutManager(getApplicationContext());
         tutorList_RecyclerView.setLayoutManager(tutorListLinearLayoutManager);
 
-        Trip trip = realm.where(Trip.class).equalTo("isActive", true).findFirst();
+        final Trip trip = realm.where(Trip.class).equalTo("isActive", true).findFirst();
 
         if(trip != null) {
             tutors = trip.tutors;
@@ -76,7 +76,7 @@ public class MainActivity extends BaseWithDrawer {
                 buyBarItem_RecyclerView.hasFixedSize();
                 LinearLayoutManager buyBarItem_LayoutManager = new LinearLayoutManager(adBuilder.getContext());
                 buyBarItem_RecyclerView.setLayoutManager(buyBarItem_LayoutManager);
-                RealmList<BarItem> barItems = tutor.barItemsBought;
+                RealmList<BarItem> barItems = trip.barItems;
 
                 buyBarItemRecyclerViewAdapter = new HomeActivity_BarItem_RecyclerViewAdapter(barItems, adBuilder.getContext());
 
