@@ -9,14 +9,12 @@ import android.widget.Toast;
 
 import dk.rus_1_katrinebjerg.barapp.R;
 
-public class RecyclerViewOnTuchListener implements RecyclerView.OnItemTouchListener{
+public class RecyclerViewOnTouchListener implements RecyclerView.OnItemTouchListener{
     private GestureDetector gestureDetector;
     private ClickListener clickListener;
-    private Context mContext;
 
-    public RecyclerViewOnTuchListener(final Context context, final RecyclerView recyclerView, final ClickListener onClickListener){
+    public RecyclerViewOnTouchListener(final Context context, final RecyclerView recyclerView, final ClickListener onClickListener){
         this.clickListener = onClickListener;
-        mContext = context;
 
         gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
 

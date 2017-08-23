@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import dk.rus_1_katrinebjerg.barapp.Activities.Base.BaseWithDrawer;
 import dk.rus_1_katrinebjerg.barapp.Adapters.HomeActivity_BarItem_RecyclerViewAdapter;
 import dk.rus_1_katrinebjerg.barapp.Adapters.HomeTutorRecyclerViewAdapter;
-import dk.rus_1_katrinebjerg.barapp.Adapters.RecyclerViewOnTuchListener;
+import dk.rus_1_katrinebjerg.barapp.Adapters.RecyclerViewOnTouchListener;
 import dk.rus_1_katrinebjerg.barapp.Model.BarItem;
 import dk.rus_1_katrinebjerg.barapp.Model.Trip;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
@@ -40,13 +40,13 @@ public class MainActivity extends BaseWithDrawer {
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
-
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
 
         ButterKnife.bind(this);
         Realm.init(getApplicationContext());
         realm = Realm.getDefaultInstance();
+        setRealmConfiguration();
 
         tutorList_RecyclerView = (RecyclerView) findViewById(R.id.Home_tutorList_recycler_view);
         tutorList_RecyclerView.hasFixedSize();
@@ -58,15 +58,27 @@ public class MainActivity extends BaseWithDrawer {
         if(trip != null) {
             tutors = trip.tutors;
         }
-        // final RealmResults<Tutor> tutors = realm.where(Tutor.class).equalTo("tripId", thisTourId).findAll();
 
-        tutorList_RecyclerView.addOnItemTouchListener(  new RecyclerViewOnTuchListener(getApplicationContext(), tutorList_RecyclerView,
-                new RecyclerViewOnTuchListener.ClickListener() {
+        if(tutors != null){
+            homeTutorRecyclerViewAdapter = new HomeTutorRecyclerViewAdapter(tutors, getApplicationContext());
+
+            tutors.addChangeListener(new RealmChangeListener<RealmList<Tutor>>(){
+                @Override
+                public void onChange(RealmList<Tutor> tutors) {
+                    homeTutorRecyclerViewAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+
+        tutorList_RecyclerView.setAdapter(homeTutorRecyclerViewAdapter);
+
+        tutorList_RecyclerView.addOnItemTouchListener(  new RecyclerViewOnTouchListener(getApplicationContext(), tutorList_RecyclerView,
+                new RecyclerViewOnTouchListener.ClickListener() {
 
             @Override
             public void onClick(View view, int pos) {
                 final Tutor tutor = tutors.get(pos);
-                String thisTuter = tutors.get(pos).streetName;
+                String thisTutor = tutors.get(pos).streetName;
 
                 AlertDialog.Builder adBuilder = new AlertDialog.Builder(MainActivity.this);
                 mDialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.fragment_main_activity_bar_item_alert_dialog, null);
@@ -89,7 +101,7 @@ public class MainActivity extends BaseWithDrawer {
 
                 buyBarItem_RecyclerView.setAdapter(buyBarItemRecyclerViewAdapter);
 
-                mHeader.setText(thisTuter + " is thirsty!!");
+                mHeader.setText(thisTutor + " is thirsty!!");
                 adBuilder.setView(mDialogView);
 
                 adBuilder.setPositiveButton(
@@ -135,19 +147,7 @@ public class MainActivity extends BaseWithDrawer {
 
         }));
 
-        if(tutors != null){
-            homeTutorRecyclerViewAdapter = new HomeTutorRecyclerViewAdapter(tutors, getApplicationContext());
 
-            tutors.addChangeListener(new RealmChangeListener<RealmList<Tutor>>(){
-                @Override
-                public void onChange(RealmList<Tutor> tutors) {
-                    homeTutorRecyclerViewAdapter.notifyDataSetChanged();
-                }
-            });
-        }
-
-        tutorList_RecyclerView.setAdapter(homeTutorRecyclerViewAdapter);
-        setRealmConfiguration();
     }
 
     // Update realm migration
