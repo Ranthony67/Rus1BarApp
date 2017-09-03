@@ -20,6 +20,7 @@ import dk.rus_1_katrinebjerg.barapp.Model.BarItem;
 import dk.rus_1_katrinebjerg.barapp.Model.Trip;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
+import dk.rus_1_katrinebjerg.barapp.Utils.realmConfig;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmConfiguration;
@@ -36,6 +37,7 @@ public class MainActivity extends BaseWithDrawer {
     HomeActivity_BarItem_RecyclerViewAdapter buyBarItemRecyclerViewAdapter;
     private RecyclerView buyBarItem_RecyclerView;
     public Realm realm;
+    public RealmConfiguration config;
     private RealmList<Tutor> tutors;
 
     @Override
@@ -45,8 +47,9 @@ public class MainActivity extends BaseWithDrawer {
 
         ButterKnife.bind(this);
         Realm.init(getApplicationContext());
-        realm = Realm.getDefaultInstance();
-        setRealmConfiguration();
+        realmConfig.setRealmConfiguration();
+        config = realmConfig.getRealmConfiguration();
+        realm = Realm.getInstance(config);
 
         tutorList_RecyclerView = (RecyclerView) findViewById(R.id.Home_tutorList_recycler_view);
         tutorList_RecyclerView.hasFixedSize();
@@ -146,18 +149,6 @@ public class MainActivity extends BaseWithDrawer {
             public void onLongClick(View view, int pos) {  }
 
         }));
-
-
-    }
-
-    // Update realm migration
-    public void setRealmConfiguration(){
-        RealmConfiguration config = new RealmConfiguration.Builder()
-                .name("realmConfig")
-                .schemaVersion(1)
-                .build();
-
-        Realm.setDefaultConfiguration(config);
     }
 }
 

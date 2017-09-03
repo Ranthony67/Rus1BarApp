@@ -19,7 +19,9 @@ import dk.rus_1_katrinebjerg.barapp.Model.BarItem;
 import dk.rus_1_katrinebjerg.barapp.Model.Trip;
 import dk.rus_1_katrinebjerg.barapp.Model.Tutor;
 import dk.rus_1_katrinebjerg.barapp.R;
+import dk.rus_1_katrinebjerg.barapp.Utils.realmConfig;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
 import io.realm.RealmResults;
 
@@ -29,15 +31,15 @@ public class EndRusturActivity extends BaseWithDrawer {
     Button EndTrip;
 
     Realm realm;
-
+    RealmConfiguration config;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_end_rustur);
         super.onCreate(savedInstanceState);
 
         ButterKnife.bind(this);
-        Realm.init(getApplicationContext());
-        Realm.getDefaultInstance();
+        config = realmConfig.getRealmConfiguration();
+        realm = Realm.getInstance(config);
 
         EndTrip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,19 +82,20 @@ public class EndRusturActivity extends BaseWithDrawer {
         fw.append("Tutor name");
         fw.append(",");
         fw.append("Total amount");
-        fw.append(",");
+        fw.append("\n");
 
         for(int i = 0; i < trip.tutors.size(); i++){
             Tutor tutor = trip.tutors.get(i);
 
             fw.append(tutor.name);
+            fw.append(",");
 
             double price = 0;
             for(int j = 0; j < tutor.barItemsBought.size(); j++){
                 price += tutor.barItemsBought.get(j).price;
             }
             fw.append(String.valueOf(price * 0.75));
-            fw.append(",");
+            fw.append("\n");
         }
 
         fw.close();
