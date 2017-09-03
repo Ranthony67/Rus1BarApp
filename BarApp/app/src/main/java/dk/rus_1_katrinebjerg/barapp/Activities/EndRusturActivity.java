@@ -94,7 +94,7 @@ public class EndRusturActivity extends BaseWithDrawer {
             for(int j = 0; j < tutor.barItemsBought.size(); j++){
                 price += tutor.barItemsBought.get(j).price;
             }
-            fw.append(String.valueOf(price * 0.75));
+            fw.append(String.valueOf(price));
             fw.append("\n");
         }
 
