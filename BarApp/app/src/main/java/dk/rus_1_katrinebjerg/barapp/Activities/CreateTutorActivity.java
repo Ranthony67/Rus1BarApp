@@ -144,6 +144,7 @@ public class CreateTutorActivity extends BaseWithDrawer {
     public void clearFields() {
         BitmapDrawable tutorImageBitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_person);
         imgBtnChooseTutorImage.setImageBitmap(tutorImageBitmapDrawable.getBitmap());
+        tutorImagePath = "";
         editTxtName.setText("");
         editTxtStreetName.setText("");
     }
