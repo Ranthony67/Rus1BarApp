@@ -172,7 +172,17 @@ public class CreateRusTourActivity extends BaseWithDrawer {
 
     private void addTrip()
     {
-        Trip trip = new Trip();
+        Trip trip = realm.where(Trip.class).equalTo("isActive", true).findFirst();
+
+        if(trip != null){
+            Intent tourCreatedIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(tourCreatedIntent);
+
+            Toast.makeText(getApplicationContext(), "There is already an active tour.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        trip = new Trip();
         int primaryKeyValue;
         if (realm.where(Trip.class).max("id") != null)
         {
@@ -196,9 +206,8 @@ public class CreateRusTourActivity extends BaseWithDrawer {
         addTutorsAndBarItemsToTour();
 
         // Make intent to alert activity that a tour is created  (MAinActivity have to be changed to tousMasterActivity
-        Intent tourCreatedIntetnt = new Intent(getApplicationContext(),MainActivity.class);
-        tourCreatedIntetnt.putExtra("tourId", primaryKeyValue);
-        startActivity(tourCreatedIntetnt);
+        Intent tourCreatedIntent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(tourCreatedIntent);
     }
 
     private void clearFields()
