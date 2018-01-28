@@ -3,6 +3,7 @@ package dk.rus_1_katrinebjerg.barapp.Utils;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
+// Class used for setting and getting the Realm Configuration
 public class realmConfig {
     private static RealmConfiguration config;
 
